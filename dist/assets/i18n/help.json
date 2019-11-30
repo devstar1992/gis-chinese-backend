@@ -7,6 +7,7 @@
 {{ 'ForgotPassword' | translate }}
 {{ 'I have not account.' | translate }}
 {{ 'Enter your mail to recover your password' | translate }}
+{{ 'Enter your phone number to recover your password' | translate }}
 
 {{ 'account' | translate }}
 {{ 'user name' | translate }}
@@ -20,6 +21,7 @@
 {{ 'contact' | translate }}
 {{ 'mail_box' | translate }}
 {{ 'phone' | translate }}
+{{ 'phone_number' | translate }}
 {{ 'address' | translate }}
 {{ 'license_number' | translate }}
 {{ 'tax_number' | translate }}

@@ -37,6 +37,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/pages/error/error.component */ "./src/app/components/pages/error/error.component.ts");
 /* harmony import */ var _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/pages/login/login.component */ "./src/app/components/pages/login/login.component.ts");
+/* harmony import */ var _shared_Service_userService_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./shared/Service/userService/auth/auth.guard */ "./src/app/shared/Service/userService/auth/auth.guard.ts");
+
 
 
 
@@ -44,9 +46,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: '', redirectTo: '/map', pathMatch: 'full' },
+    { path: '', redirectTo: 'map', pathMatch: 'full' },
     {
         path: 'map',
+        canActivate: [_shared_Service_userService_auth_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]],
         loadChildren: () => __webpack_require__.e(/*! import() | components-map-map-module */ "components-map-map-module").then(__webpack_require__.bind(null, /*! ./components/map/map.module */ "./src/app/components/map/map.module.ts")).then(m => m.MapModule)
     },
     { path: 'login', component: _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
@@ -338,10 +341,8 @@ class LoginComponent {
             role: ['agent', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
         });
         this.formGroupP = this._formBuilder.group({
-            name: [''],
-            mail: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email]],
-            phone: [''],
-            message: ['请重设我的密码'],
+            phone: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            role: ['']
         });
     }
     //LanguageChagePart
@@ -351,8 +352,9 @@ class LoginComponent {
         this.translate.use(language);
     }
     passwordReset() {
-        this.userService.postRequest("api/sendGmail", this.formGroupP.value, false).subscribe(res => {
-            this.Toaster('success', '', 'Your message have sent successfully. Please wait the result.', 2000);
+        this.formGroupP.value.role = this.formGroup.value.role;
+        this.userService.postRequest("api/resetPassword", this.formGroupP.value, false).subscribe(res => {
+            this.Toaster('success', '', 'New password is ' + res['result'], 4000);
         }, err => {
             this.handleError(err);
         });
@@ -417,12 +419,12 @@ class LoginComponent {
         else
             this.Toaster('error', '', err.error.message, 1500);
     }
-    Toaster(style, msgtopic, msgContent, time = 1000) {
+    Toaster(style, msgtopic, msgContent, time = 2000) {
         this.toastr.show(style, msgtopic, msgContent, time);
     }
 }
 LoginComponent.ɵfac = function LoginComponent_Factory(t) { return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_Service_userService_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_shared_Module_toaster_toaster_service__WEBPACK_IMPORTED_MODULE_4__["ToasterService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"])); };
-LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: LoginComponent, selectors: [["app-login"]], decls: 106, vars: 51, consts: [[1, "loginWrapper", "clearfix"], [1, "banWrapper", 2, "background", "#262626", "background-image", "url('assets/img/costic/default-login.jpg')", "background-size", "cover"], [1, "loginMain"], ["id", "ms-nav-options", 1, "ms-nav-list", "ms-inline", "mb-0"], [1, "ms-nav-item", "dropdown"], ["data-toggle", "dropdown", "aria-haspopup", "true", "aria-expanded", "false", 1, "media", "p-2", "mousePointer"], [1, "ms-chat-img", "mr-2", "align-self-center"], [1, "ms-img-round", "ms-img-round123", 3, "src"], [1, "media-body"], [1, "username"], ["aria-labelledby", "languageDropdown", 1, "dropdown-menu", "dropdown-menu-right", "user-dropdown"], [1, "ms-scrollable", "ms-dropdown-list"], [1, "media", "p-2", "mousePointer", 3, "click"], [1, "loginWidth"], [1, "loginLogoDiv"], ["href", "http://vdms.aidetecting.com/", 1, "loginLogo"], ["src", "assets/img/logo.png"], ["novalidate", "", 1, "formLogin", "needs-validation", 3, "formGroup", "ngSubmit"], ["myform", "ngForm"], [1, "ms-list", "d-flex"], [1, "ms-list-item", "pl-0"], [1, "ms-checkbox-wrap"], ["type", "radio", "name", "role", "formControlName", "role", "value", "admin"], [1, "ms-checkbox-check"], [1, "ms-list-item"], ["type", "radio", "name", "role", "formControlName", "role", "value", "agent"], ["type", "radio", "name", "role", "formControlName", "role", "value", "user"], [1, "mb-3"], [1, "input-group", "loginList", "loginListUser"], ["type", "text", "formControlName", "username", 1, "loginText", 3, "placeholder"], ["class", "invalid-feedback", "style", "display: block;", 4, "ngIf"], [1, "mb-2"], [1, "input-group", "loginList", "loginListPwd"], ["type", "password", "formControlName", "password", "minlength", "8", 1, "loginText", 3, "placeholder"], [1, "loginList"], ["data-toggle", "modal", "data-toggle", "modal", "data-target", "#modal-12"], ["type", "submit", "id", "loginBtn", 1, "loginBtn", 2, "background", "rgb(3, 197, 255)", 3, "value"], [1, "have"], ["href", "http://vdms.aidetecting.com/"], ["id", "modal-12", "tabindex", "-1", "role", "dialog", "aria-labelledby", "modal-12", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog", "modal-dialog-centered", "modal-min"], [1, "modal-content"], [1, "modal-body", "text-center"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "flaticon-secure-shield", "d-block"], [1, "formLogin", "needs-validation", 3, "formGroup"], ["myformP", "ngForm"], [1, "ms-form-group", "has-icon"], ["type", "email", "name", "forgot-password", "formControlName", "mail", 1, "form-control", 3, "placeholder"], [1, "material-icons"], ["type", "submit", "data-dismiss", "modal", 1, "btn", "btn-primary", "shadow-none", 3, "disabled", "click"], [1, "invalid-feedback", 2, "display", "block"]], template: function LoginComponent_Template(rf, ctx) { if (rf & 1) {
+LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: LoginComponent, selectors: [["app-login"]], decls: 106, vars: 51, consts: [[1, "loginWrapper", "clearfix"], [1, "banWrapper", 2, "background", "#262626", "background-image", "url('assets/img/costic/default-login.jpg')", "background-size", "cover"], [1, "loginMain"], ["id", "ms-nav-options", 1, "ms-nav-list", "ms-inline", "mb-0"], [1, "ms-nav-item", "dropdown"], ["data-toggle", "dropdown", "aria-haspopup", "true", "aria-expanded", "false", 1, "media", "p-2", "mousePointer"], [1, "ms-chat-img", "mr-2", "align-self-center"], [1, "ms-img-round", "ms-img-round123", 3, "src"], [1, "media-body"], [1, "username"], ["aria-labelledby", "languageDropdown", 1, "dropdown-menu", "dropdown-menu-right", "user-dropdown"], [1, "ms-scrollable", "ms-dropdown-list"], [1, "media", "p-2", "mousePointer", 3, "click"], [1, "loginWidth"], [1, "loginLogoDiv"], ["href", "http://vdms.aidetecting.com/", 1, "loginLogo"], ["src", "assets/img/logo.png"], ["novalidate", "", 1, "formLogin", "needs-validation", 3, "formGroup", "ngSubmit"], ["myform", "ngForm"], [1, "ms-list", "d-flex"], [1, "ms-list-item", "pl-0"], [1, "ms-checkbox-wrap"], ["type", "radio", "name", "role", "formControlName", "role", "value", "admin"], [1, "ms-checkbox-check"], [1, "ms-list-item"], ["type", "radio", "name", "role", "formControlName", "role", "value", "agent"], ["type", "radio", "name", "role", "formControlName", "role", "value", "user"], [1, "mb-3"], [1, "input-group", "loginList", "loginListUser"], ["type", "text", "formControlName", "username", 1, "loginText", 3, "placeholder"], ["class", "invalid-feedback", "style", "display: block;", 4, "ngIf"], [1, "mb-2"], [1, "input-group", "loginList", "loginListPwd"], ["type", "password", "formControlName", "password", "minlength", "8", 1, "loginText", 3, "placeholder"], [1, "loginList"], ["data-toggle", "modal", "data-toggle", "modal", "data-target", "#modal-12"], ["type", "submit", "id", "loginBtn", 1, "loginBtn", 2, "background", "rgb(3, 197, 255)", 3, "value"], [1, "have"], ["href", "http://vdms.aidetecting.com/"], ["id", "modal-12", "tabindex", "-1", "role", "dialog", "aria-labelledby", "modal-12", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog", "modal-dialog-centered", "modal-min"], [1, "modal-content"], [1, "modal-body", "text-center"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "flaticon-secure-shield", "d-block"], [1, "formLogin", "needs-validation", 3, "formGroup"], ["myformP", "ngForm"], [1, "ms-form-group", "has-icon"], ["type", "text", "name", "forgot-password", "formControlName", "phone", 1, "form-control", 3, "placeholder"], [1, "material-icons"], ["type", "submit", "data-dismiss", "modal", 1, "btn", "btn-primary", "shadow-none", 3, "disabled", "click"], [1, "invalid-feedback", 2, "display", "block"]], template: function LoginComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -570,7 +572,7 @@ LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](98, "input", 49);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](99, "translate");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](100, "i", 50);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](101, "email");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](101, "phone");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](102, LoginComponent_div_102_Template, 3, 3, "div", 30);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -604,7 +606,7 @@ LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](55, 29, "user"), " ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("placeholder", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](60, 31, "user name"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("placeholder", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](60, 31, "phone_number"));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.formGroup.get("username").invalid && (_r0.submitted || ctx.formGroup.get("username").dirty || ctx.formGroup.get("username").touched));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
@@ -622,13 +624,13 @@ LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](12);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](91, 43, "register"));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](94, 45, "Enter your mail to recover your password"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](94, 45, "Enter your phone number to recover your password"));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formGroup", ctx.formGroupP);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("placeholder", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](99, 47, "mail_box"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("placeholder", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](99, 47, "phone_number"));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.formGroupP.get("mail").invalid && (_r3.submitted || ctx.formGroupP.get("mail").dirty || ctx.formGroupP.get("mail").touched));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.formGroupP.get("phone").invalid && (_r3.submitted || ctx.formGroupP.get("phone").dirty || ctx.formGroupP.get("phone").touched));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.formGroupP.invalid);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
@@ -1805,6 +1807,55 @@ ToasterService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineIn
 
 /***/ }),
 
+/***/ "./src/app/shared/Service/userService/auth/auth.guard.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/shared/Service/userService/auth/auth.guard.ts ***!
+  \***************************************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../user.service */ "./src/app/shared/Service/userService/user.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+
+
+
+class AuthGuard {
+    constructor(userService, router) {
+        this.userService = userService;
+        this.router = router;
+    }
+    canActivate(next, state) {
+        if (!this.userService.isLoggedIn()) {
+            this.router.navigateByUrl(this.userService.loginURL);
+            return false;
+        }
+        return true;
+    }
+    canActivateChild(next, state) {
+        if (!this.userService.isLoggedIn()) {
+            this.router.navigateByUrl(this.userService.loginURL);
+            return false;
+        }
+        return true;
+    }
+}
+AuthGuard.ɵfac = function AuthGuard_Factory(t) { return new (t || AuthGuard)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"])); };
+AuthGuard.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: AuthGuard, factory: AuthGuard.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AuthGuard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "./src/app/shared/Service/userService/user.service.ts":
 /*!************************************************************!*\
   !*** ./src/app/shared/Service/userService/user.service.ts ***!
@@ -1817,7 +1868,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
 
 
 
@@ -1828,6 +1881,7 @@ class UserService {
         this.http = http;
         this.router = router;
         this.loginURL = '/login';
+        this.VDMSURL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].VDMSURL;
         this.noAuthHeader = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'NoAuth': 'True' }) };
     }
     //For login & register
@@ -1848,7 +1902,7 @@ class UserService {
         this.gotoHome();
     }
     gotoHome() {
-        this.router.navigateByUrl('http://vdms.aidetecting.com/');
+        window.location.href = this.VDMSURL;
     }
     gotoFirstPage() {
         this.router.navigateByUrl('/map/monitor');
@@ -1891,14 +1945,14 @@ class UserService {
         return header;
     }
 }
-UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"])); };
+UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"])); };
 UserService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: UserService, factory: UserService.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](UserService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }]; }, null); })();
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }]; }, null); })();
 
 
 /***/ }),
@@ -1918,7 +1972,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    apiBaseUrl: 'localhost:3000/'
+    apiBaseUrl: 'localhost:3000/',
+    VDMSURL: 'http://vdms.aidetecting.com/',
 };
 /*
  * For easier debugging in development mode, you can import the following file

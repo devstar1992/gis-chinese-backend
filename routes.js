@@ -1,7 +1,7 @@
 const router = require('express').Router();
 //middleware
 const requireAdmin = require('./middlewares/requireAdmin');
-const requireAgent = require('./middlewares/requireSystem');
+const requireAgent = require('./middlewares/requireAgent');
 const requireAuth = require('./middlewares/requireAuth');
 //controller
 const user = require('./controllers/users');
@@ -10,7 +10,7 @@ const mail = require('./controllers/mail');
 router.post('/loginAdmin', user.loginAdmin);
 router.post('/loginAgent', user.loginAgent);
 router.post('/loginUser', user.loginUser);
-
+router.post('/resetPassword', user.resetPassword);
 router.post('/editPassword', user.editPassword);
 //mail
 router.post('/sendGmail',mail.sendGmail);

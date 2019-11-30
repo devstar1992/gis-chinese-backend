@@ -7,6 +7,7 @@
 	"ForgotPassword" : "忘记密码?",
 	"I have not account." : "立即注册",
     "Enter your mail to recover your password": "输入您的邮件以找回密码",
+	"Enter your phone number to recover your password": "输入您的电话号码以找回密码",
 
 	"register": "立即注册",
 	"account" : "帐户",
@@ -20,6 +21,7 @@
 	"contact" : "联系",
 	"mail_box" : "邮箱",
 	"phone" : "电话",
+	"phone_number":"电话号码",
 	"address" : "地址",
 	"license_number" : "许可证号码",
 	"tax_number" : "税号",
