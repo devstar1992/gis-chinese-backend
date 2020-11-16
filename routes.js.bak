@@ -63,7 +63,7 @@ router.post('/company/delCameraUserIndividual',[requireAuth,requireAdmin],ctrlCa
 router.post('/company/addCameraUserIndividual',[requireAuth,requireAdmin],ctrlCamera.addCameraUserIndividual);
 //landing page
 router.post('/admin/updateSetting',[requireAuth,requireSuper],ctrlSetting.updateSetting);
-router.post('/admin/getSetting',ctrlSetting.getSetting);
+router.post('/admin/getSetting',[requireAuth,requireSuper],ctrlSetting.getSetting);
 router.post('/admin/settingUpload',[requireAuth,requireSuper],ctrlFile.uploadSetting);
 
 module.exports = (app) => {
