@@ -10,6 +10,7 @@ let getSetting = async (req, res) => {
   res.json({ message: 'success', result: result });
 };
 let updateSetting = async (req, res) => {
+  console.log(req.body)
   const  d= await query.del('setting','');
   const result = await query.create('setting', req.body);
   if (result.affectedRows > 0) {
