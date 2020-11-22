@@ -58,8 +58,18 @@ let deleteItem = (path) => {
     //file removed
   })
 };
+let deleteFile = (req, res) => {
+  fs.unlink(__dirname + '\\' + req.body.path, (err) => {
+    if (err) {
+      res.status(401).json({message:'Failure',err:err})
+    }else{
+      res.status(200).json({message:'Success'})
+    }
+  })
+};
 module.exports = {
   deleteItem: deleteItem,
   uploadAvatarItem: uploadAvatarItem,
-  uploadSetting:uploadSetting
+  uploadSetting:uploadSetting,
+  deleteFile: deleteFile
 }

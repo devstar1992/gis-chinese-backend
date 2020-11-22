@@ -15,7 +15,7 @@ router.post('/login', ctrlUser.login);
 router.post('/editPassword', ctrlUser.editPassword);
 //@file_upload
 router.post('/uploadAvatar',[requireAuth],ctrlFile.uploadAvatarItem);
-
+router.post('/deleteFile',[requireAuth],ctrlFile.deleteFile);
 //admin
 router.post('/admin/getSystemUser',[requireAuth,requireSuper],ctrlAdmin.getSystemUser);
 router.post('/admin/editSystemUser',[requireAuth,requireSuper],ctrlAdmin.editSystemUser);
