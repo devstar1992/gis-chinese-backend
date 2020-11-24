@@ -8,6 +8,7 @@ const ctrlAdmin = require('./controllers/admin');
 const ctrlFile = require('./file');
 const ctrlCamera = require('./controllers/camera');
 const ctrlSetting = require('./controllers/setting');
+const ctrlMail = require('./controllers/mail');
 
 const router = require('express').Router();
 //user
@@ -65,7 +66,8 @@ router.post('/company/addCameraUserIndividual',[requireAuth,requireAdmin],ctrlCa
 router.post('/admin/updateSetting',[requireAuth,requireSuper],ctrlSetting.updateSetting);
 router.post('/admin/getSetting',ctrlSetting.getSetting);
 router.post('/admin/settingUpload',[requireAuth,requireSuper],ctrlFile.uploadSetting);
-
+//mail
+router.post('/sendGmail',ctrlMail.sendGmail);
 module.exports = (app) => {
   app.use('/api', router);
 

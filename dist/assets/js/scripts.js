@@ -4,8 +4,6 @@
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-agency/blob/master/LICENSE)
     */
     (function ($) {
-    "use strict"; // Start of use strict
-
     // Smooth scrolling using jQuery easing
     $('js-scroll-trigger').click(function () {
         if (

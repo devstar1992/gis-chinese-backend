@@ -6643,10 +6643,16 @@ function View_HomeComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODUL
         var pd_0 = (_co.topFunction() !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 0, "i", [["class", "fas fa fa-chevron-up"]], null, null, null, null, null))], function (_ck, _v) { var _co = _v.component; var currVal_0 = _co.html; _ck(_v, 1, 0, currVal_0); }, null); }
-function View_HomeComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-home", [], null, [["window", "scroll"]], function (_v, en, $event) { var ad = true; if (("window:scroll" === en)) {
+function View_HomeComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 1, "app-home", [], null, [["window", "scroll"], ["window", "click"], ["window", "keyup"]], function (_v, en, $event) { var ad = true; if (("window:scroll" === en)) {
         var pd_0 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).onScroll($event) !== false);
         ad = (pd_0 && ad);
-    } return ad; }, View_HomeComponent_0, RenderType_HomeComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 114688, null, 0, _home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"], [_shared_userService_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"], _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_7__["ToasterService"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["DomSanitizer"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+    } if (("window:click" === en)) {
+        var pd_1 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).onClick($event.target) !== false);
+        ad = (pd_1 && ad);
+    } if (("window:keyup" === en)) {
+        var pd_2 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 1).handleKeyDown($event) !== false);
+        ad = (pd_2 && ad);
+    } return ad; }, View_HomeComponent_0, RenderType_HomeComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](1, 4308992, null, 0, _home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"], [_shared_userService_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"], _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_7__["ToasterService"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__["DomSanitizer"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var HomeComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵccf"]("app-home", _home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"], View_HomeComponent_Host_0, {}, {}, []);
 
 
@@ -6684,6 +6690,12 @@ class HomeComponent {
         this.baseURL = "http://" + _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiBaseUrl;
         this.url = "/home";
         this.navbarClass = "navbar navbar-expand-lg navbar-dark fixed-top";
+        this.imailRegex = /^\S+@\S+\.\S+$/;
+        this.value = {
+            name: '',
+            email: '',
+            message: ''
+        };
     }
     onScroll(event) {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -6693,9 +6705,74 @@ class HomeComponent {
             document.getElementById("myBtn").style.display = "none";
         }
     }
+    onClick(targetElement) {
+        if ('id' in targetElement && targetElement.id == "logOut") {
+            this.userService.deleteToken();
+            document.getElementById('logOut').style.display = "none";
+            document.getElementById('console').style.display = "none";
+            document.getElementById('logIn').style.display = "block";
+        }
+        else if ('id' in targetElement && targetElement.id == "sendMessageButton") {
+            const name = this.value.name;
+            const email = this.value.email;
+            const message = this.value.message;
+            if (name.length == 0)
+                document.getElementById('name_p').innerHTML = "Pleae provide valid name";
+            if (!this.imailRegex.test(email))
+                document.getElementById('email_p').innerHTML = "Pleae provide valid email";
+            if (message.length == 0)
+                document.getElementById('message_p').innerHTML = "Pleae provide valid message";
+            if (name.length != 0 && this.imailRegex.test(email) && message.length != 0) {
+                this.sendGmail();
+            }
+        }
+    }
+    handleKeyDown(event) {
+        if ('id' in event.target) {
+            const id = event.target['id'];
+            if (id == 'name' || id == 'message') {
+                this.value[id] = event.target['value'];
+                if (String(event.target['value']).length > 0)
+                    document.getElementById(id + '_p').innerHTML = null;
+            }
+            else if (id == 'email') {
+                this.value[id] = event.target['value'];
+                if (this.imailRegex.test(String(event.target['value'])))
+                    document.getElementById(id + '_p').innerHTML = null;
+            }
+        }
+    }
+    sendGmail() {
+        this.userService.postRequest('api/sendGmail', this.value).subscribe(res => {
+            this.showSuccessToaster('success', '', 'success');
+        }, err => {
+            this.showSuccessToaster('error', '', 'failure');
+        });
+    }
+    showSuccessToaster(style, msgtopic, msgContent) {
+        this.toastr.show(style, msgtopic, msgContent);
+    }
     topFunction() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+    }
+    ngAfterViewInit() {
+        this.timer = setTimeout(() => this.setNavbar(), 1000);
+    }
+    setNavbar() {
+        if (!document.getElementById('logOut') || !document.getElementById('logOut') || !document.getElementById('logOut'))
+            return;
+        clearInterval(this.timer);
+        if (this.userService.isLoggedIn({}) == true) {
+            document.getElementById('logOut').style.display = "block";
+            document.getElementById('console').style.display = "block";
+            document.getElementById('logIn').style.display = "none";
+        }
+        else {
+            document.getElementById('logIn').style.display = "block";
+            document.getElementById('logOut').style.display = "none";
+            document.getElementById('console').style.display = "none";
+        }
     }
     ngOnInit() {
         this.router.events.subscribe(s => {
@@ -6710,231 +6787,7 @@ class HomeComponent {
             }
         });
         const template = `
-    <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-  <div class="container">
-    <img class="logoImg"  src="assets/img/logo.png" alt="" />
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-      aria-label="Toggle navigation">
-      Menu
-      <i class="fas fa-bars ml-1"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav text-uppercase ml-auto">
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home#services">Services</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home#portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home#about">About</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home#team">Team</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/home#contact">Contact</a></li>
-        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/monitor">My account</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<!-- Masthead-->
-<header class="masthead" style="background-image:url('assets/img/mainImg.jpg')">
-  <div class="container">
-    <div class="masthead-subheading">Welcome to our site</div>
-    <div class="masthead-heading text-uppercase">It is Nice to meet you</div>
-    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
-  </div>
-</header>
-<!-- Services-->
-<section class="page-section" id="services">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">Services</h2>
-    </div>
-    <div class="row text-center">
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">Vehicel Tracking</h4>
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">GIS service</h4>
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-lock+fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">Web Security</h4>
-        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Portfolio Grid-->
-<section class="page-section bg-light" id="portfolio">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">Portfolio</h2>
-    </div>
-    <div class="row">
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="portfolio-item">
-          <a class="portfolio-link">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid1" src="assets/img/portfolio_img1.jpg" alt="" />
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="portfolio-item">
-          <a class="portfolio-link">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid1" src="assets/img/portfolio_img1.jpg" alt="" />
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="portfolio-item">
-          <a class="portfolio-link">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid1" src="assets/img/portfolio_img1.jpg" alt="" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- About-->
-<div id="about">
-  <div class="container">
-    <div class="section-title text-center center">
-      <h2><strong>About</strong> us</h2>
-      <hr>
-    </div>
-    <div class="row">
-      <div class="col-md-6"> <img src="assets/img/about.png" class="img-responsive"> </div>
-      <div class="col-md-6">
-        <div class="about-text">
-          <i class="fa fa-users"></i>
-          <div class="padding-left">
-            <h4>What We Do</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam.</p>
-          </div>
-        </div>
-        <div class="about-text">
-          <i class="fa fa-magic"></i>
-          <div class="padding-left">
-            <h4>Where We Go</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam.</p>
-          </div>
-        </div>
-        <div class="about-text">
-          <i class="fa fa-thermometer"></i>
-          <div class="padding-left">
-            <h4>Why Choose Us</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam. Sed commodo nibh ante facilisis bibendum dolor feugiat at. Duis sed dapibus leo nec ornare diam.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Team-->
-<section class="page-section bg-light" id="team">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">Our team</h2>
-    </div>
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="team-member">
-          <img class="mx-auto rounded-circle" src="assets/img/team_1.jpg" alt="" />
-          <h4>Mr.lin</h4>
-          <p class="text-muted">Company Director</p>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div  class="team-member">
-          <img class="mx-auto rounded-circle" src="assets/img/team_2.jpg" alt="" />
-          <h4>Mr.yang</h4>
-          <p class="text-muted">Company assistance</p>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div  class="team-member">
-          <img class="mx-auto rounded-circle" src="assets/img/team_3.jpg" alt="" />
-          <h4>leha.khazhilov</h4>
-          <p class="text-muted">Web developer</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Contact-->
-<section class="page-section" id="contact">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">Contact Us</h2>
-      <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-    </div>
-    <form id="contactForm" name="sentMessage" novalidate="novalidate">
-      <div class="row align-items-stretch mb-5">
-        <div class="col-md-6">
-          <div class="form-group">
-            <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required"
-              data-validation-required-message="Please enter your name." />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="form-group">
-            <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required"
-              data-validation-required-message="Please enter your email address." />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="form-group mb-md-0">
-            <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required"
-              data-validation-required-message="Please enter your phone number." />
-            <p class="help-block text-danger"></p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group form-group-textarea mb-md-0">
-            <textarea class="form-control" id="message" placeholder="Your Message *" required="required"
-              data-validation-required-message="Please enter a message."></textarea>
-            <p class="help-block text-danger"></p>
-          </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <div id="success"></div>
-        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">Send Message</button>
-      </div>
-    </form>
-  </div>
-</section>
-<!-- Footer-->
-<footer class="footer py-4">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
-      <div class="col-lg-4 my-3 my-lg-0 letfDiv">
-        <a class="btn btn-dark btn-social mx-2"><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-dark btn-social mx-2"><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-dark btn-social mx-2"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- Portfolio Modals-->
+    <p>waiting server...</p>
     `;
         this.style = `
     <style>
@@ -6945,7 +6798,15 @@ class HomeComponent {
       height: auto;
       max-width: inherit;
     }
-    
+    #logOut{
+      cursor:pointer;
+    }
+    #logIn{
+      cursor:pointer;
+    }
+    #console{
+      cursor:pointer;
+    }
     @charset "UTF-8";
     /*!
     * Start Bootstrap - Agency v6.0.3 (https://startbootstrap.com/theme/agency)
@@ -12271,47 +12132,6 @@ class HomeComponent {
     a.close.disabled {
       pointer-events: none;
     }
-    
-    .toast {
-      flex-basis: 350px;
-      max-width: 350px;
-      font-size: 0.875rem;
-      background-color: rgba(255, 255, 255, 0.85);
-      background-clip: padding-box;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
-      opacity: 0;
-      border-radius: 0.25rem;
-    }
-    .toast:not(:last-child) {
-      margin-bottom: 0.75rem;
-    }
-    .toast.showing {
-      opacity: 1;
-    }
-    .toast.show {
-      display: block;
-      opacity: 1;
-    }
-    .toast.hide {
-      display: none;
-    }
-    
-    .toast-header {
-      display: flex;
-      align-items: center;
-      padding: 0.25rem 0.75rem;
-      color: #6c757d;
-      background-color: rgba(255, 255, 255, 0.85);
-      background-clip: padding-box;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      border-top-left-radius: calc(0.25rem - 1px);
-      border-top-right-radius: calc(0.25rem - 1px);
-    }
-    
-    .toast-body {
-      padding: 0.75rem;
-    }
     .tooltip {
       position: absolute;
       z-index: 1070;
@@ -17198,11 +17018,11 @@ class HomeComponent {
       height: auto;
     }
     section#contact form#contactForm .form-group-textarea {
-      height: 100%;
+      height: 90%;
     }
     section#contact form#contactForm .form-group-textarea textarea {
-      height: 100%;
-      min-height: 10rem;
+      height: 97%;
+    min-height: 8rem;
     }
     section#contact form#contactForm p.help-block {
       margin: 0;
@@ -17325,6 +17145,7 @@ class HomeComponent {
                     this.html = this.sanitizer.bypassSecurityTrustHtml(res['result'][0].code + this.style);
                 else
                     this.html = this.sanitizer.bypassSecurityTrustHtml(template + this.style);
+                // this.setNavbar()
             }, err => {
                 this.handleError(err);
                 this.html = this.sanitizer.bypassSecurityTrustHtml(template + this.style);
@@ -17337,9 +17158,6 @@ class HomeComponent {
             this.showSuccessToaster('error', '', 'server is not responsing.');
         else
             this.showSuccessToaster('error', '', err.error.message);
-    }
-    showSuccessToaster(style, msgtopic, msgContent) {
-        this.toastr.show(style, msgtopic, msgContent);
     }
     onAnchorClick() {
         this.route.fragment.subscribe(f => {
@@ -19460,7 +19278,7 @@ __webpack_require__.r(__webpack_exports__);
  */ 
 
 
-var styles_ToasterComponent = [".toast[_ngcontent-%COMP%] {\n      position: fixed;\n      right: 0;\n      top: 10px;\n      width: 300px;\n      height: 80px;\n      padding: .75rem 1.25rem;\n      margin-top: 1rem;\n      border: 1px solid transparent;\n      border-radius: .25rem;\n      animation: move 0.3s both;\n    }\n\n    .toast-success[_ngcontent-%COMP%] {\n      color: #155724;\n      background-color: #d4edda;\n      border-color: #c3e6cb;\n    }\n\n    .toast-error[_ngcontent-%COMP%] {\n      color: #721c24;\n      background-color: #f8d7da;\n      border-color: #f5c6cb;\n    }\n\n    .toast-warning[_ngcontent-%COMP%] {\n      color: #856404;\n      background-color: #fff3cd;\n      border-color: #ffeeba;\n    }\n\n    .close[_ngcontent-%COMP%] {\n      position: absolute;\n      top: 7px;\n      right: 10px;\n      font-size: 1.5em;\n      cursor: pointer;\n    }\n\n    .toast-heading[_ngcontent-%COMP%] {\n      margin-top: 10px;\n    }\n\n    @keyframes move {\n      from {\n        transform: translateX(100%);\n      }\n      to {\n        transform: translateX(0);\n      }"];
+var styles_ToasterComponent = [".toast[_ngcontent-%COMP%] {\n      position: fixed;\n      right: 0;\n      top: 10px;\n      width: 300px;\n      z-index: 100000000;\n      height: 80px;\n      padding: .75rem 1.25rem;\n      margin-top: 1rem;\n      border: 1px solid transparent;\n      border-radius: .25rem;\n      animation: move 0.3s both;\n    }\n\n    .toast-success[_ngcontent-%COMP%] {\n      color: #155724;\n      background-color: #d4edda;\n      border-color: #c3e6cb;\n    }\n\n    .toast-error[_ngcontent-%COMP%] {\n      color: #721c24;\n      background-color: #f8d7da;\n      border-color: #f5c6cb;\n    }\n\n    .toast-warning[_ngcontent-%COMP%] {\n      color: #856404;\n      background-color: #fff3cd;\n      border-color: #ffeeba;\n    }\n\n    .close[_ngcontent-%COMP%] {\n      position: absolute;\n      top: 7px;\n      right: 10px;\n      font-size: 1.5em;\n      cursor: pointer;\n    }\n\n    .toast-heading[_ngcontent-%COMP%] {\n      margin-top: 10px;\n    }\n\n    @keyframes move {\n      from {\n        transform: translateX(100%);\n      }\n      to {\n        transform: translateX(0);\n      }"];
 var RenderType_ToasterComponent = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 0, styles: styles_ToasterComponent, data: {} });
 
 function View_ToasterComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 6, "div", [], [[8, "className", 0], [4, "bottom", "px"]], null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 1, "h4", [["class", "toast-heading"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](2, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](3, 0, null, null, 1, "p", [], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵted"](4, null, ["", ""])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](5, 0, null, null, 1, "a", [["class", "close"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
