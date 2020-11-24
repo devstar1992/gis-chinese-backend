@@ -19,14 +19,37 @@ const send = require('gmail-send')({
     //html:    '<b>html text</b>'            // HTML
     // files: [ filepath ],                  // Set filenames to attach (if you need to set attachment filename in email, see example below
 });
+
+var nodemailer = require('nodemailer');
+var mail = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    secureConnection: false,
+    port: 587,
+    requiresAuth: true,
+    domains: ["gmail.com", "googlemail.com"],
+    auth: {
+      user: 'skybluegis0508@gmail.com',
+      pass: 'skyblue0508)%)*'
+    }
+  });
+var mailOptions = {
+    from: 'skybluegis0508@gmail.com',
+    to: 'skybluegis0508@gmail.com',
+    subject: 'Sending Email via Node.js',
+    text: 'That was easy!'
+};
+  
 let sendGmail = (req, res) => {
-    send({
-        subject: req.body.name,
-        text:req.body.message,
-    }, function (err, r, full) {
-        if (err) {
-            return res.status(401).json({ message: 'failure', err: err });
-          } else { return res.json({ message: 'success', result: r }); }
+    mailOptions.subject=req.body.name;
+    mailOptions.text=req.body.message;
+    mail.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+          return res.status(401).json({ message: 'failure', err: error });
+        } else {
+          console.log('Email sent: ' + info.response);
+          return res.json({ message: 'success', result: info.response });
+        }
       });
 }
 
