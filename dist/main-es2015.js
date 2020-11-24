@@ -6691,9 +6691,11 @@ class HomeComponent {
         this.url = "/home";
         this.navbarClass = "navbar navbar-expand-lg navbar-dark fixed-top";
         this.imailRegex = /^\S+@\S+\.\S+$/;
+        this.phoneRegex = /^1[3|4|5|7|8][0-9]{9}$/;
         this.value = {
             name: '',
             email: '',
+            phone: '',
             message: ''
         };
     }
@@ -6715,11 +6717,14 @@ class HomeComponent {
         else if ('id' in targetElement && targetElement.id == "sendMessageButton") {
             const name = this.value.name;
             const email = this.value.email;
+            const phone = this.value.phone;
             const message = this.value.message;
             if (name.length == 0)
                 document.getElementById('name_p').innerHTML = "Pleae provide valid name";
             if (!this.imailRegex.test(email))
                 document.getElementById('email_p').innerHTML = "Pleae provide valid email";
+            if (!this.phoneRegex.test(phone))
+                document.getElementById('phone_p').innerHTML = "Pleae provide valid phone number";
             if (message.length == 0)
                 document.getElementById('message_p').innerHTML = "Pleae provide valid message";
             if (name.length != 0 && this.imailRegex.test(email) && message.length != 0) {
@@ -6738,6 +6743,11 @@ class HomeComponent {
             else if (id == 'email') {
                 this.value[id] = event.target['value'];
                 if (this.imailRegex.test(String(event.target['value'])))
+                    document.getElementById(id + '_p').innerHTML = null;
+            }
+            else if (id == 'phone') {
+                this.value[id] = event.target['value'];
+                if (this.phoneRegex.test(String(event.target['value'])))
                     document.getElementById(id + '_p').innerHTML = null;
             }
         }
@@ -17018,7 +17028,7 @@ class HomeComponent {
       height: auto;
     }
     section#contact form#contactForm .form-group-textarea {
-      height: 90%;
+      height: 94%;
     }
     section#contact form#contactForm .form-group-textarea textarea {
       height: 97%;
