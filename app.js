@@ -4,8 +4,9 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
-
+const compression = require('compression')
 const app = express();
+app.use(compression())
 app.use(express.static(path.join(__dirname, '')));
 app.use(express.static(path.resolve(__dirname, "dist")));
 app.get("*", function (req, res) {
