@@ -14288,13 +14288,19 @@ class UserService {
             return this.http.post(URL, data, this.noAuthHeader);
     }
     gotoFirstPage() {
-        const role = this.getToken().userInfo.role;
-        if (role == 'super' || role == 'system')
-            this.router.navigateByUrl('admin');
-        else if (role == 'admin')
-            this.router.navigateByUrl('company');
-        else
-            this.router.navigateByUrl('map');
+        var token = this.getToken();
+        if (token) {
+            const role = this.getToken().userInfo.role;
+            if (role == 'super' || role == 'system')
+                this.router.navigateByUrl('admin');
+            else if (role == 'admin')
+                this.router.navigateByUrl('company');
+            else
+                this.router.navigateByUrl('map');
+        }
+        else {
+            this.router.navigateByUrl('');
+        }
     }
     setToken(token) {
         localStorage.setItem('token', JSON.stringify(token));

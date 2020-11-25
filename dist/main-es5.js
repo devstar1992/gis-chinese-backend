@@ -7525,8 +7525,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "gotoFirstPage",
         value: function gotoFirstPage() {
-          var role = this.getToken().userInfo.role;
-          if (role == 'super' || role == 'system') this.router.navigateByUrl('admin');else if (role == 'admin') this.router.navigateByUrl('company');else this.router.navigateByUrl('map');
+          var token = this.getToken();
+
+          if (token) {
+            var role = this.getToken().userInfo.role;
+            if (role == 'super' || role == 'system') this.router.navigateByUrl('admin');else if (role == 'admin') this.router.navigateByUrl('company');else this.router.navigateByUrl('map');
+          } else {
+            this.router.navigateByUrl('');
+          }
         }
       }, {
         key: "setToken",
