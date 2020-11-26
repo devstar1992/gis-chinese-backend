@@ -212,73 +212,67 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ../../../../environments/environment */
-    "./src/environments/environment.ts");
-    /* harmony import */
-
-
-    var _shared_userService_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _shared_userService_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! ../../../shared/userService/user.service */
     "./src/app/shared/userService/user.service.ts");
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
     /* harmony import */
 
 
-    var _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ../../../shared/toastrService/toaster.service */
     "./src/app/shared/toastrService/toaster.service.ts");
     /* harmony import */
 
 
-    var _layouts_side_navbar_side_navbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _layouts_side_navbar_side_navbar_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../../layouts/side-navbar/side-navbar.component */
     "./src/app/components/layouts/side-navbar/side-navbar.component.ts");
     /* harmony import */
 
 
-    var _layouts_top_navbar_top_navbar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _layouts_top_navbar_top_navbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ../../layouts/top-navbar/top-navbar.component */
     "./src/app/components/layouts/top-navbar/top-navbar.component.ts");
     /* harmony import */
 
 
-    var _shared_Datatable_DataTable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _shared_Datatable_DataTable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ../../../shared/Datatable/DataTable */
     "./src/app/shared/Datatable/DataTable.ts");
     /* harmony import */
 
 
-    var _shared_Datatable_DefaultSorter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _shared_Datatable_DefaultSorter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ../../../shared/Datatable/DefaultSorter */
     "./src/app/shared/Datatable/DefaultSorter.ts");
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! @angular/common */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
     /* harmony import */
 
 
-    var _shared_Datatable_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _shared_Datatable_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ../../../shared/Datatable/BootstrapPaginator */
     "./src/app/shared/Datatable/BootstrapPaginator.ts");
     /* harmony import */
 
 
-    var _layouts_footbar_footbar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _layouts_footbar_footbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ../../layouts/footbar/footbar.component */
     "./src/app/components/layouts/footbar/footbar.component.ts");
     /* harmony import */
 
 
-    var _layouts_quick_bar_quick_bar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    var _layouts_quick_bar_quick_bar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ../../layouts/quick-bar/quick-bar.component */
     "./src/app/components/layouts/quick-bar/quick-bar.component.ts");
 
@@ -394,7 +388,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("src", ctx_r18.baseURL + item_r16.avatar, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("src", item_r16.avatar, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
@@ -834,7 +828,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this._formBuilder = _formBuilder;
         this.toastr = toastr;
-        this.baseURL = "http://" + _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiBaseUrl;
         this.useravatar = 'uploads/avatar/sample-1.jpg';
         this.modalStatus = false;
         this.editStatus = false;
@@ -915,14 +908,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var filename = ns + '.' + this.fileDish.name.split('.')[this.fileDish.name.split('.').length - 1];
               ;
               this.formData.append('file', this.fileDish, filename);
-              this.userService.uploadAvatar(this.formData).subscribe(function (res) {
+              this.userService.postRequest("api/uploadAvatar", this.formData).subscribe(function (res) {
                 _this.formGroup.value.avatar = res['path'];
 
                 _this.addItem();
               }, function (err) {
-                _this.refresh();
-
-                console.log(err);
+                _this.handleError(err);
               });
             } else {
               this.formGroup.value.avatar = this.useravatar;
@@ -936,12 +927,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               ;
               this.formData.append('file', this.fileDish, _filename);
-              this.userService.uploadAvatar(this.formData).subscribe(function (res) {
+              this.userService.postRequest("api/uploadAvatar", this.formData).subscribe(function (res) {
                 _this.formGroup.value.avatar = res['path'];
 
                 _this.editItem();
               }, function (err) {
-                _this.refresh();
+                _this.handleError(err);
               });
             } else {
               this.editItem();
@@ -954,19 +945,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this2 = this;
 
           this.formGroup.value.created_by = this.user.username;
-          this.userService.addCompany({
+          this.userService.postRequest("api/company/addCompanyAll", {
             user: this.user,
             data: this.formGroup.value
           }).subscribe(function (res) {
-            _this2.showSuccessToaster('success', '', 'success');
+            _this2.Toaster('success', '', 'success');
 
             _this2.refresh();
 
             _this2.getItem();
           }, function (err) {
-            _this2.refresh();
-
-            _this2.showSuccessToaster('error', '', err.error.message);
+            _this2.handleError(err);
           });
         }
       }, {
@@ -975,7 +964,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this3 = this;
 
           this.formGroup.value.created_by = this.user.username;
-          this.userService.editCompany({
+          this.userService.postRequest("api/company/editCompanyAll", {
             user: this.user,
             data: this.formGroup.value
           }).subscribe(function (res) {
@@ -983,11 +972,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _this3.getItem();
 
-            _this3.showSuccessToaster('success', '', 'success');
+            _this3.Toaster('success', '', 'success');
           }, function (err) {
-            _this3.refresh();
-
-            _this3.showSuccessToaster('error', '', 'failure');
+            _this3.handleError(err);
           });
         }
       }, {
@@ -995,21 +982,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function deleteItem() {
           var _this4 = this;
 
-          this.userService.delCompany({
+          this.userService.postRequest("api/company/delCompanyAll", {
             user: this.user,
             data: this.data[this.delKey]
           }).subscribe(function (res) {
-            _this4.showSuccessToaster('success', '', 'success');
+            _this4.Toaster('success', '', 'success');
 
             _this4.refresh();
 
             _this4.getItem();
           }, function (err) {
-            _this4.showSuccessToaster('error', '', 'failure');
-
-            _this4.refresh();
-
-            _this4.getItem();
+            _this4.handleError(err);
           });
         }
       }, {
@@ -1017,7 +1000,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getItem() {
           var _this5 = this;
 
-          this.userService.getCompany({
+          this.userService.postRequest("api/company/getCompanyAll", {
             user: this.user
           }).subscribe(function (res) {
             _this5.data = res['result'];
@@ -1056,12 +1039,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             status: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
             role: ['user']
           });
-        } //for toastr
+        } //toastr functions
 
       }, {
-        key: "showSuccessToaster",
-        value: function showSuccessToaster(style, msgtopic, msgContent) {
-          this.toastr.show(style, msgtopic, msgContent);
+        key: "handleError",
+        value: function handleError(err) {
+          if (err.status == 504) this.Toaster('error', '', 'server is not responsing.', 4000);else this.Toaster('error', '', err.error.message, 1500);
+        }
+      }, {
+        key: "Toaster",
+        value: function Toaster(style, msgtopic, msgContent) {
+          var time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1000;
+          this.toastr.show(style, msgtopic, msgContent, time);
         } //for file manage
 
       }, {
@@ -1110,7 +1099,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     CompanyUserPublicComponent.ɵfac = function CompanyUserPublicComponent_Factory(t) {
-      return new (t || CompanyUserPublicComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_userService_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_5__["ToasterService"]));
+      return new (t || CompanyUserPublicComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_userService_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_4__["ToasterService"]));
     };
 
     CompanyUserPublicComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
@@ -2064,7 +2053,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("formGroup", ctx.formGroup);
         }
       },
-      directives: [_layouts_side_navbar_side_navbar_component__WEBPACK_IMPORTED_MODULE_6__["SideNavbarComponent"], _layouts_top_navbar_top_navbar_component__WEBPACK_IMPORTED_MODULE_7__["TopNavbarComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLinkWithHref"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgModel"], _shared_Datatable_DataTable__WEBPACK_IMPORTED_MODULE_8__["DataTable"], _shared_Datatable_DefaultSorter__WEBPACK_IMPORTED_MODULE_9__["DefaultSorter"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _shared_Datatable_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_11__["BootstrapPaginator"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormGroupDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_x"], _layouts_footbar_footbar_component__WEBPACK_IMPORTED_MODULE_12__["FootbarComponent"], _layouts_quick_bar_quick_bar_component__WEBPACK_IMPORTED_MODULE_13__["QuickBarComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["MinLengthValidator"]],
+      directives: [_layouts_side_navbar_side_navbar_component__WEBPACK_IMPORTED_MODULE_5__["SideNavbarComponent"], _layouts_top_navbar_top_navbar_component__WEBPACK_IMPORTED_MODULE_6__["TopNavbarComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgModel"], _shared_Datatable_DataTable__WEBPACK_IMPORTED_MODULE_7__["DataTable"], _shared_Datatable_DefaultSorter__WEBPACK_IMPORTED_MODULE_8__["DefaultSorter"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], _shared_Datatable_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_10__["BootstrapPaginator"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormGroupDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_x"], _layouts_footbar_footbar_component__WEBPACK_IMPORTED_MODULE_11__["FootbarComponent"], _layouts_quick_bar_quick_bar_component__WEBPACK_IMPORTED_MODULE_12__["QuickBarComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["MinLengthValidator"]],
       styles: ["table[_ngcontent-%COMP%] {\r\n  width: 100%;\r\n}\r\n\r\nth.mat-sort-header-sorted[_ngcontent-%COMP%] {\r\n  color: black;\r\n}\r\n\r\ntd[_ngcontent-%COMP%]   i[_ngcontent-%COMP%]{\r\n  margin-right: 0px;\r\n}\r\n\r\n.avatar_img[_ngcontent-%COMP%]{\r\n  height:30px;\r\n  width: 30px;\r\n\r\n}\r\n\r\n.labelMiddle[_ngcontent-%COMP%]{\r\n  background-color: white;\r\nposition: relative;\r\ntop: 24px;\r\nfont-size: 12px;\r\nleft: 10px;\r\nz-index: 1000;\r\nfont-weight: 800;\r\n}\r\n\r\n.form-control[_ngcontent-%COMP%]{\r\nwidth: 100%;\r\n}\r\n\r\n.invalid-feedback[_ngcontent-%COMP%] {\r\nbottom: calc(100% + -27px);\r\nright: 0;\r\ntext-align: right;\r\nposition: absolute;\r\n}\r\n\r\n.input-group[_ngcontent-%COMP%] {\r\nmargin-bottom: -19px;\r\n}\r\n\r\n.body1[_ngcontent-%COMP%] {\r\n\r\n}\r\n\r\n.header1[_ngcontent-%COMP%]{\r\nbackground-color: #db7093b8;\r\nfont-family: monospace;\r\nfont-size: 23px;\r\n}\r\n\r\n.ms-user-img[_ngcontent-%COMP%]{\r\nmargin-top: -20px;\r\n}\r\n\r\n.ms-panel[_ngcontent-%COMP%]{\r\nmargin-bottom: 0px;\r\n}\r\n\r\n.ms-card-fh[_ngcontent-%COMP%]{\r\nmargin-bottom: 0px;\r\n}\r\n\r\n.ms-user-img[_ngcontent-%COMP%]{\r\n  width:90px;\r\n  height: 90px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hZG1pbl9jb21wYW55L2NvbXBhbnkvY29tcGFueV91c2VyX3B1YmxpYy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsaUJBQWlCO0FBQ25COztBQUNBO0VBQ0UsV0FBVztFQUNYLFdBQVc7O0FBRWI7O0FBQ0E7RUFDRSx1QkFBdUI7QUFDekIsa0JBQWtCO0FBQ2xCLFNBQVM7QUFDVCxlQUFlO0FBQ2YsVUFBVTtBQUNWLGFBQWE7QUFDYixnQkFBZ0I7QUFDaEI7O0FBQ0E7QUFDQSxXQUFXO0FBQ1g7O0FBQ0E7QUFDQSwwQkFBMEI7QUFDMUIsUUFBUTtBQUNSLGlCQUFpQjtBQUNqQixrQkFBa0I7QUFDbEI7O0FBQ0E7QUFDQSxvQkFBb0I7QUFDcEI7O0FBQ0E7QUFDQSxpQ0FBaUM7QUFDakM7O0FBQ0E7QUFDQSwyQkFBMkI7QUFDM0Isc0JBQXNCO0FBQ3RCLGVBQWU7QUFDZjs7QUFDQTtBQUNBLGlCQUFpQjtBQUNqQjs7QUFDQTtBQUNBLGtCQUFrQjtBQUNsQjs7QUFDQTtBQUNBLGtCQUFrQjtBQUNsQjs7QUFDQTtFQUNFLFVBQVU7RUFDVixZQUFZO0FBQ2QiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2FkbWluX2NvbXBhbnkvY29tcGFueS9jb21wYW55X3VzZXJfcHVibGljLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJ0YWJsZSB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbnRoLm1hdC1zb3J0LWhlYWRlci1zb3J0ZWQge1xyXG4gIGNvbG9yOiBibGFjaztcclxufVxyXG5cclxudGQgaXtcclxuICBtYXJnaW4tcmlnaHQ6IDBweDtcclxufVxyXG4uYXZhdGFyX2ltZ3tcclxuICBoZWlnaHQ6MzBweDtcclxuICB3aWR0aDogMzBweDtcclxuXHJcbn1cclxuLmxhYmVsTWlkZGxle1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xyXG5wb3NpdGlvbjogcmVsYXRpdmU7XHJcbnRvcDogMjRweDtcclxuZm9udC1zaXplOiAxMnB4O1xyXG5sZWZ0OiAxMHB4O1xyXG56LWluZGV4OiAxMDAwO1xyXG5mb250LXdlaWdodDogODAwO1xyXG59ICBcclxuLmZvcm0tY29udHJvbHtcclxud2lkdGg6IDEwMCU7XHJcbn1cclxuLmludmFsaWQtZmVlZGJhY2sge1xyXG5ib3R0b206IGNhbGMoMTAwJSArIC0yN3B4KTtcclxucmlnaHQ6IDA7XHJcbnRleHQtYWxpZ246IHJpZ2h0O1xyXG5wb3NpdGlvbjogYWJzb2x1dGU7XHJcbn1cclxuLmlucHV0LWdyb3VwIHtcclxubWFyZ2luLWJvdHRvbTogLTE5cHg7XHJcbn1cclxuLmJvZHkxIHtcclxuLyogcGFkZGluZy10b3A6IDBweCAhaW1wb3J0YW50OyAqL1xyXG59XHJcbi5oZWFkZXIxe1xyXG5iYWNrZ3JvdW5kLWNvbG9yOiAjZGI3MDkzYjg7XHJcbmZvbnQtZmFtaWx5OiBtb25vc3BhY2U7XHJcbmZvbnQtc2l6ZTogMjNweDtcclxufVxyXG4ubXMtdXNlci1pbWd7XHJcbm1hcmdpbi10b3A6IC0yMHB4O1xyXG59XHJcbi5tcy1wYW5lbHtcclxubWFyZ2luLWJvdHRvbTogMHB4O1xyXG59XHJcbi5tcy1jYXJkLWZoe1xyXG5tYXJnaW4tYm90dG9tOiAwcHg7XHJcbn1cclxuLm1zLXVzZXItaW1ne1xyXG4gIHdpZHRoOjkwcHg7XHJcbiAgaGVpZ2h0OiA5MHB4O1xyXG59Il19 */"]
     });
     /*@__PURE__*/
@@ -2079,13 +2068,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }]
       }], function () {
         return [{
-          type: _shared_userService_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]
+          type: _shared_userService_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]
         }, {
-          type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
         }, {
           type: _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormBuilder"]
         }, {
-          type: _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_5__["ToasterService"]
+          type: _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_4__["ToasterService"]
         }];
       }, null);
     })();
@@ -2127,73 +2116,67 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ../../../../environments/environment */
-    "./src/environments/environment.ts");
-    /* harmony import */
-
-
-    var _shared_userService_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _shared_userService_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! ../../../shared/userService/user.service */
     "./src/app/shared/userService/user.service.ts");
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
     /* harmony import */
 
 
-    var _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ../../../shared/toastrService/toaster.service */
     "./src/app/shared/toastrService/toaster.service.ts");
     /* harmony import */
 
 
-    var _layouts_side_navbar_side_navbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _layouts_side_navbar_side_navbar_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../../layouts/side-navbar/side-navbar.component */
     "./src/app/components/layouts/side-navbar/side-navbar.component.ts");
     /* harmony import */
 
 
-    var _layouts_top_navbar_top_navbar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _layouts_top_navbar_top_navbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ../../layouts/top-navbar/top-navbar.component */
     "./src/app/components/layouts/top-navbar/top-navbar.component.ts");
     /* harmony import */
 
 
-    var _shared_Datatable_DataTable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _shared_Datatable_DataTable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ../../../shared/Datatable/DataTable */
     "./src/app/shared/Datatable/DataTable.ts");
     /* harmony import */
 
 
-    var _shared_Datatable_DefaultSorter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _shared_Datatable_DefaultSorter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ../../../shared/Datatable/DefaultSorter */
     "./src/app/shared/Datatable/DefaultSorter.ts");
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! @angular/common */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
     /* harmony import */
 
 
-    var _shared_Datatable_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _shared_Datatable_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ../../../shared/Datatable/BootstrapPaginator */
     "./src/app/shared/Datatable/BootstrapPaginator.ts");
     /* harmony import */
 
 
-    var _layouts_footbar_footbar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _layouts_footbar_footbar_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ../../layouts/footbar/footbar.component */
     "./src/app/components/layouts/footbar/footbar.component.ts");
     /* harmony import */
 
 
-    var _layouts_quick_bar_quick_bar_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    var _layouts_quick_bar_quick_bar_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ../../layouts/quick-bar/quick-bar.component */
     "./src/app/components/layouts/quick-bar/quick-bar.component.ts");
 
@@ -2309,7 +2292,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("src", ctx_r14.baseURL + item_r12.avatar, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("src", item_r12.avatar, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
@@ -2649,7 +2632,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this._formBuilder = _formBuilder;
         this.toastr = toastr;
-        this.baseURL = "http://" + _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiBaseUrl;
         this.useravatar = 'uploads/avatar/sample-1.jpg';
         this.modalStatus = false;
         this.editStatus = false;
@@ -2730,12 +2712,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var filename = ns + '.' + this.fileDish.name.split('.')[this.fileDish.name.split('.').length - 1];
               ;
               this.formData.append('file', this.fileDish, filename);
-              this.userService.uploadAvatar(this.formData).subscribe(function (res) {
+              this.userService.postRequest("api/uploadAvatar", this.formData).subscribe(function (res) {
                 _this7.formGroup.value.avatar = res['path'];
 
                 _this7.addItem();
               }, function (err) {
-                _this7.refresh();
+                _this7.handleError(err);
               });
             } else {
               this.formGroup.value.avatar = this.useravatar;
@@ -2749,12 +2731,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               ;
               this.formData.append('file', this.fileDish, _filename2);
-              this.userService.uploadAvatar(this.formData).subscribe(function (res) {
+              this.userService.postRequest("api/uploadAvatar", this.formData).subscribe(function (res) {
                 _this7.formGroup.value.avatar = res['path'];
 
                 _this7.editItem();
               }, function (err) {
-                _this7.refresh();
+                _this7.handleError(err);
               });
             } else {
               this.editItem();
@@ -2767,19 +2749,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this8 = this;
 
           this.formGroup.value.created_by = this.user.username;
-          this.userService.addIndividual({
+          this.userService.postRequest("api/company/addIndividual", {
             user: this.user,
             data: this.formGroup.value
           }).subscribe(function (res) {
-            _this8.showSuccessToaster('success', '', 'success');
+            _this8.Toaster('success', '', 'success');
 
             _this8.refresh();
 
             _this8.getItem();
           }, function (err) {
-            _this8.refresh();
-
-            _this8.showSuccessToaster('error', '', err.error.message);
+            _this8.handleError(err);
           });
         }
       }, {
@@ -2788,19 +2768,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this9 = this;
 
           this.formGroup.value.created_by = this.user.username;
-          this.userService.editIndividual({
+          this.userService.postRequest("api/company/editIndividual", {
             user: this.user,
             data: this.formGroup.value
           }).subscribe(function (res) {
-            _this9.showSuccessToaster('success', '', 'success');
+            _this9.Toaster('success', '', 'success');
 
             _this9.refresh();
 
             _this9.getItem();
           }, function (err) {
-            _this9.showSuccessToaster('error', '', err.error.message);
-
-            _this9.refresh();
+            _this9.handleError(err);
           });
         }
       }, {
@@ -2808,21 +2786,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function deleteItem() {
           var _this10 = this;
 
-          this.userService.delIndividual({
+          this.userService.postRequest("api/company/delIndividual", {
             user: this.user,
             data: this.data[this.delKey]
           }).subscribe(function (res) {
-            _this10.showSuccessToaster('success', '', 'success');
+            _this10.Toaster('success', '', 'success');
 
             _this10.refresh();
 
             _this10.getItem();
           }, function (err) {
-            _this10.showSuccessToaster('error', '', err.error.message);
-
-            _this10.refresh();
-
-            _this10.getItem();
+            _this10.handleError(err);
           });
         }
       }, {
@@ -2830,7 +2804,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getItem() {
           var _this11 = this;
 
-          this.userService.getIndividual({
+          this.userService.postRequest("api/company/getIndividual", {
             user: this.user
           }).subscribe(function (res) {
             _this11.data = res['result'];
@@ -2865,12 +2839,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             status: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required],
             role: ['user']
           });
-        } //for toastr
+        } //toastr functions
 
       }, {
-        key: "showSuccessToaster",
-        value: function showSuccessToaster(style, msgtopic, msgContent) {
-          this.toastr.show(style, msgtopic, msgContent);
+        key: "handleError",
+        value: function handleError(err) {
+          if (err.status == 504) this.Toaster('error', '', 'server is not responsing.', 4000);else this.Toaster('error', '', err.error.message, 1500);
+        }
+      }, {
+        key: "Toaster",
+        value: function Toaster(style, msgtopic, msgContent) {
+          var time = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1000;
+          this.toastr.show(style, msgtopic, msgContent, time);
         } //for file manage
 
       }, {
@@ -2919,7 +2899,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     IndividualUserPublicComponent.ɵfac = function IndividualUserPublicComponent_Factory(t) {
-      return new (t || IndividualUserPublicComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_userService_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_5__["ToasterService"]));
+      return new (t || IndividualUserPublicComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_userService_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_4__["ToasterService"]));
     };
 
     IndividualUserPublicComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
@@ -3753,7 +3733,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("formGroup", ctx.formGroup);
         }
       },
-      directives: [_layouts_side_navbar_side_navbar_component__WEBPACK_IMPORTED_MODULE_6__["SideNavbarComponent"], _layouts_top_navbar_top_navbar_component__WEBPACK_IMPORTED_MODULE_7__["TopNavbarComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLinkWithHref"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgModel"], _shared_Datatable_DataTable__WEBPACK_IMPORTED_MODULE_8__["DataTable"], _shared_Datatable_DefaultSorter__WEBPACK_IMPORTED_MODULE_9__["DefaultSorter"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _shared_Datatable_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_11__["BootstrapPaginator"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormGroupDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_x"], _layouts_footbar_footbar_component__WEBPACK_IMPORTED_MODULE_12__["FootbarComponent"], _layouts_quick_bar_quick_bar_component__WEBPACK_IMPORTED_MODULE_13__["QuickBarComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["MinLengthValidator"]],
+      directives: [_layouts_side_navbar_side_navbar_component__WEBPACK_IMPORTED_MODULE_5__["SideNavbarComponent"], _layouts_top_navbar_top_navbar_component__WEBPACK_IMPORTED_MODULE_6__["TopNavbarComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterLinkWithHref"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgModel"], _shared_Datatable_DataTable__WEBPACK_IMPORTED_MODULE_7__["DataTable"], _shared_Datatable_DefaultSorter__WEBPACK_IMPORTED_MODULE_8__["DefaultSorter"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], _shared_Datatable_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_10__["BootstrapPaginator"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormGroupDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgIf"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormControlName"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["SelectControlValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵangular_packages_forms_forms_x"], _layouts_footbar_footbar_component__WEBPACK_IMPORTED_MODULE_11__["FootbarComponent"], _layouts_quick_bar_quick_bar_component__WEBPACK_IMPORTED_MODULE_12__["QuickBarComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__["MinLengthValidator"]],
       styles: ["table[_ngcontent-%COMP%] {\r\n    width: 100%;\r\n  }\r\n  \r\n  th.mat-sort-header-sorted[_ngcontent-%COMP%] {\r\n    color: black;\r\n  }\r\n  \r\n  td[_ngcontent-%COMP%]   i[_ngcontent-%COMP%]{\r\n    margin-right: 0px;\r\n  }\r\n  \r\n  .avatar_img[_ngcontent-%COMP%]{\r\n    height:30px;\r\n    width: 30px;\r\n\r\n  }\r\n  \r\n  .labelMiddle[_ngcontent-%COMP%]{\r\n    background-color: white;\r\nposition: relative;\r\ntop: 24px;\r\nfont-size: 12px;\r\nleft: 10px;\r\nz-index: 1000;\r\nfont-weight: 800;\r\n}\r\n  \r\n  .form-control[_ngcontent-%COMP%]{\r\n  width: 100%;\r\n}\r\n  \r\n  .invalid-feedback[_ngcontent-%COMP%] {\r\n  bottom: calc(100% + -27px);\r\n  right: 0;\r\n  text-align: right;\r\n  position: absolute;\r\n}\r\n  \r\n  .input-group[_ngcontent-%COMP%] {\r\n  margin-bottom: -19px;\r\n}\r\n  \r\n  .body1[_ngcontent-%COMP%] {\r\n  \r\n}\r\n  \r\n  .header1[_ngcontent-%COMP%]{\r\n  background-color: #db7093b8;\r\n  font-family: monospace;\r\n  font-size: 23px;\r\n}\r\n  \r\n  .ms-user-img[_ngcontent-%COMP%]{\r\n  margin-top: -20px;\r\n}\r\n  \r\n  .ms-panel[_ngcontent-%COMP%]{\r\n  margin-bottom: 0px;\r\n}\r\n  \r\n  .ms-card-fh[_ngcontent-%COMP%]{\r\n  margin-bottom: 0px;\r\n}\r\n  \r\n  .ms-user-img[_ngcontent-%COMP%]{\r\n  width:90px;\r\n  height: 90px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hZG1pbl9jb21wYW55L2luZGl2aWR1YWwvaW5kaXZpZHVhbF91c2VyX3B1YmxpYy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksV0FBVztFQUNiOztFQUVBO0lBQ0UsWUFBWTtFQUNkOztFQUVBO0lBQ0UsaUJBQWlCO0VBQ25COztFQUNBO0lBQ0UsV0FBVztJQUNYLFdBQVc7O0VBRWI7O0VBQ0E7SUFDRSx1QkFBdUI7QUFDM0Isa0JBQWtCO0FBQ2xCLFNBQVM7QUFDVCxlQUFlO0FBQ2YsVUFBVTtBQUNWLGFBQWE7QUFDYixnQkFBZ0I7QUFDaEI7O0VBQ0E7RUFDRSxXQUFXO0FBQ2I7O0VBQ0E7RUFDRSwwQkFBMEI7RUFDMUIsUUFBUTtFQUNSLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7O0VBQ0E7RUFDRSxvQkFBb0I7QUFDdEI7O0VBQ0E7RUFDRSxpQ0FBaUM7QUFDbkM7O0VBQ0E7RUFDRSwyQkFBMkI7RUFDM0Isc0JBQXNCO0VBQ3RCLGVBQWU7QUFDakI7O0VBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7O0VBQ0E7RUFDRSxrQkFBa0I7QUFDcEI7O0VBQ0E7RUFDRSxrQkFBa0I7QUFDcEI7O0VBQ0E7RUFDRSxVQUFVO0VBQ1YsWUFBWTtBQUNkIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9hZG1pbl9jb21wYW55L2luZGl2aWR1YWwvaW5kaXZpZHVhbF91c2VyX3B1YmxpYy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGFibGUge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgfVxyXG4gIFxyXG4gIHRoLm1hdC1zb3J0LWhlYWRlci1zb3J0ZWQge1xyXG4gICAgY29sb3I6IGJsYWNrO1xyXG4gIH1cclxuXHJcbiAgdGQgaXtcclxuICAgIG1hcmdpbi1yaWdodDogMHB4O1xyXG4gIH1cclxuICAuYXZhdGFyX2ltZ3tcclxuICAgIGhlaWdodDozMHB4O1xyXG4gICAgd2lkdGg6IDMwcHg7XHJcblxyXG4gIH1cclxuICAubGFiZWxNaWRkbGV7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxucG9zaXRpb246IHJlbGF0aXZlO1xyXG50b3A6IDI0cHg7XHJcbmZvbnQtc2l6ZTogMTJweDtcclxubGVmdDogMTBweDtcclxuei1pbmRleDogMTAwMDtcclxuZm9udC13ZWlnaHQ6IDgwMDtcclxufSBcclxuLmZvcm0tY29udHJvbHtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG4uaW52YWxpZC1mZWVkYmFjayB7XHJcbiAgYm90dG9tOiBjYWxjKDEwMCUgKyAtMjdweCk7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgdGV4dC1hbGlnbjogcmlnaHQ7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG59XHJcbi5pbnB1dC1ncm91cCB7XHJcbiAgbWFyZ2luLWJvdHRvbTogLTE5cHg7XHJcbn1cclxuLmJvZHkxIHtcclxuICAvKiBwYWRkaW5nLXRvcDogMHB4ICFpbXBvcnRhbnQ7ICovXHJcbn1cclxuLmhlYWRlcjF7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2RiNzA5M2I4O1xyXG4gIGZvbnQtZmFtaWx5OiBtb25vc3BhY2U7XHJcbiAgZm9udC1zaXplOiAyM3B4O1xyXG59XHJcbi5tcy11c2VyLWltZ3tcclxuICBtYXJnaW4tdG9wOiAtMjBweDtcclxufVxyXG4ubXMtcGFuZWx7XHJcbiAgbWFyZ2luLWJvdHRvbTogMHB4O1xyXG59XHJcbi5tcy1jYXJkLWZoe1xyXG4gIG1hcmdpbi1ib3R0b206IDBweDtcclxufVxyXG4ubXMtdXNlci1pbWd7XHJcbiAgd2lkdGg6OTBweDtcclxuICBoZWlnaHQ6IDkwcHg7XHJcbn0iXX0= */"]
     });
     /*@__PURE__*/
@@ -3768,13 +3748,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }]
       }], function () {
         return [{
-          type: _shared_userService_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]
+          type: _shared_userService_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]
         }, {
-          type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
         }, {
           type: _angular_forms__WEBPACK_IMPORTED_MODULE_0__["FormBuilder"]
         }, {
-          type: _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_5__["ToasterService"]
+          type: _shared_toastrService_toaster_service__WEBPACK_IMPORTED_MODULE_4__["ToasterService"]
         }];
       }, null);
     })();

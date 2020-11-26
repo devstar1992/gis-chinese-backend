@@ -6,18 +6,31 @@ const query = require('../model/query');
 const ctrlFile = require('../file');
 //for normalAdmin
 let getSetting = async (req, res) => {
-  const result = await query.get('setting', '*', '');
-  res.json({ message: 'success', result: result });
+  try {
+    const result = await query.get('setting', '*', '');
+    return res.json({ message: 'success', result: result });
+  }
+  catch (error) {
+    return res.status(400).json({
+      message: 'Something went wrong.', err: error
+    });
+  }
 };
 let updateSetting = async (req, res) => {
-  const  d= await query.del('setting','');
-  const result = await query.create('setting', req.body);
-  if (result.affectedRows > 0) {
-    res.json({ message: 'success', result: result });
-  } else { res.status(401).json({ message: 'no record', result: result }); }
+  try {
+    const d = await query.del('setting', '');
+    const result = await query.create('setting', req.body);
+    if (result.affectedRows > 0) {
+      return res.json({ message: 'success', result: result });
+    } else { res.status(401).json({ message: 'no record', result: result }); }
+  }
+  catch (error) {
+    return res.status(400).json({
+      message: 'Something went wrong.', err: error
+    });
+  }
 }
-
 module.exports = {
-  updateSetting:updateSetting,
-  getSetting:getSetting
+  updateSetting: updateSetting,
+  getSetting: getSetting
 }

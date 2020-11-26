@@ -17,22 +17,22 @@ router.post('/editPassword', ctrlUser.editPassword);
 //@file_upload
 router.post('/uploadAvatar',[requireAuth],ctrlFile.uploadAvatarItem);
 router.post('/deleteFile',[requireAuth],ctrlFile.deleteFile);
-//admin
+//admin_system
 router.post('/admin/getSystemUser',[requireAuth,requireSuper],ctrlAdmin.getSystemUser);
 router.post('/admin/editSystemUser',[requireAuth,requireSuper],ctrlAdmin.editSystemUser);
 router.post('/admin/delSystemUser',[requireAuth,requireSuper],ctrlAdmin.delSystemUser);
 router.post('/admin/addSystemUser',[requireAuth,requireSuper],ctrlAdmin.addSystemUser);
 
-router.post('/admin/getCompanyAll',[requireAuth,requireSystem],ctrlAdmin.getCompany);
-router.post('/admin/editCompanyAll',[requireAuth,requireSystem],ctrlAdmin.editCompany);
-router.post('/admin/delCompanyAll',[requireAuth,requireSystem],ctrlAdmin.delCompany);
-router.post('/admin/addCompanyAll',[requireAuth,requireSystem],ctrlAdmin.addCompany);
+router.post('/admin/getCompany',[requireAuth,requireSystem],ctrlAdmin.getCompany);
+router.post('/admin/editCompany',[requireAuth,requireSystem],ctrlAdmin.editCompany);
+router.post('/admin/delCompany',[requireAuth,requireSystem],ctrlAdmin.delCompany);
+router.post('/admin/addCompany',[requireAuth,requireSystem],ctrlAdmin.addCompany);
 
 router.post('/admin/getIndividual',[requireAuth,requireSystem],ctrlAdmin.getIndividual);
 router.post('/admin/editIndividual',[requireAuth,requireSystem],ctrlAdmin.editIndividual);
 router.post('/admin/delIndividual',[requireAuth,requireSystem],ctrlAdmin.delIndividual);
 router.post('/admin/addIndividual',[requireAuth,requireSystem],ctrlAdmin.addIndividual);
-
+//admin_company
 router.post('/company/getCompanyAll',[requireAuth,requireAdmin],ctrlUser.getCompany);
 router.post('/company/editCompanyAll',[requireAuth,requireAdmin],ctrlUser.editCompany);
 router.post('/company/delCompanyAll',[requireAuth,requireAdmin],ctrlUser.delCompany);
@@ -42,7 +42,7 @@ router.post('/company/getIndividual',[requireAuth,requireAdmin],ctrlUser.getIndi
 router.post('/company/editIndividual',[requireAuth,requireAdmin],ctrlUser.editIndividual);
 router.post('/company/delIndividual',[requireAuth,requireAdmin],ctrlUser.delIndividual);
 router.post('/company/addIndividual',[requireAuth,requireAdmin],ctrlUser.addIndividual);
-//device
+//device_system
 router.post('/admin/getCameraRegister',[requireAuth,requireSystem],ctrlCamera.getCameraRegister);
 router.post('/admin/editCameraRegister',[requireAuth,requireSystem],ctrlCamera.editCameraRegister);
 router.post('/admin/delCameraRegister',[requireAuth,requireSystem],ctrlCamera.delCameraRegister);
@@ -57,15 +57,15 @@ router.post('/admin/getCameraUserCompany',[requireAuth,requireSystem],ctrlCamera
 router.post('/admin/editCameraUserCompany',[requireAuth,requireSystem],ctrlCamera.editCameraUserCompanyAll);
 router.post('/admin/delCameraUserCompany',[requireAuth,requireSystem],ctrlCamera.delCameraUserCompanyAll);
 router.post('/admin/addCameraUserCompany',[requireAuth,requireSystem],ctrlCamera.addCameraUserCompanyAll);
-
+//device_company
 router.post('/company/getCameraUserIndividual',[requireAuth,requireAdmin],ctrlCamera.getCameraUserIndividual);
 router.post('/company/editCameraUserIndividual',[requireAuth,requireAdmin],ctrlCamera.editCameraUserIndividual);
 router.post('/company/delCameraUserIndividual',[requireAuth,requireAdmin],ctrlCamera.delCameraUserIndividual);
 router.post('/company/addCameraUserIndividual',[requireAuth,requireAdmin],ctrlCamera.addCameraUserIndividual);
 //landing page
-router.post('/admin/updateSetting',[requireAuth,requireSuper],ctrlSetting.updateSetting);
+router.post('/admin/updateSetting',[requireAuth,requireSystem],ctrlSetting.updateSetting);
 router.post('/admin/getSetting',ctrlSetting.getSetting);
-router.post('/admin/settingUpload',[requireAuth,requireSuper],ctrlFile.uploadSetting);
+router.post('/admin/settingUpload',[requireAuth,requireSystem],ctrlFile.uploadSetting);
 //mail
 router.post('/sendGmail',ctrlMail.sendGmail);
 module.exports = (app) => {
