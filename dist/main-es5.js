@@ -7337,6 +7337,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getHeader",
         value: function getHeader() {
+          if (!this.getToken()) {
+            this.router.navigateByUrl(this.loginURL);
+            return;
+          }
+
           var header = {
             headers: {
               Authorization: "Bearer ".concat(this.getToken().token)

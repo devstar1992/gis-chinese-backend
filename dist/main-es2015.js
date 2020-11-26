@@ -14221,6 +14221,10 @@ class UserService {
             return false;
     }
     getHeader() {
+        if (!this.getToken()) {
+            this.router.navigateByUrl(this.loginURL);
+            return;
+        }
         const header = { headers: { Authorization: `Bearer ${this.getToken().token}` }, user: this.getToken().userInfo };
         return header;
     }
