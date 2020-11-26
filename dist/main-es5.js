@@ -7340,6 +7340,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (!this.getToken()) {
             this.router.navigateByUrl(this.loginURL);
             return;
+          } else if (this.isLoggedIn()) {
+            this.router.navigateByUrl(this.loginURL);
+            return;
           }
 
           var header = {
