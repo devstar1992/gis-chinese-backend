@@ -5469,7 +5469,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "setNavbar",
         value: function setNavbar() {
-          if (!document.getElementById('logOut') || !document.getElementById('logOut') || !document.getElementById('logOut')) return;
+          if (!document.getElementById('logOut') || !document.getElementById('console') || !document.getElementById('logIn')) return;
           clearInterval(this.timer);
 
           if (this.userService.isLoggedIn({}) == true) {
@@ -7010,7 +7010,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.translate = translate; // Gets Default language from browser if available, otherwise set English ad default
 
       this.translate.addLangs(['en', 'ch']);
-      this.translate.use('ch');
+      this.translate.setDefaultLang('en');
       var browserLang = this.translate.getBrowserLang();
       this.translate.use(browserLang.match(/en|ch/) ? browserLang : 'en');
     };

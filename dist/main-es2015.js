@@ -2804,7 +2804,7 @@ class HomeComponent {
         this.timer = setTimeout(() => this.setNavbar(), 1000);
     }
     setNavbar() {
-        if (!document.getElementById('logOut') || !document.getElementById('logOut') || !document.getElementById('logOut'))
+        if (!document.getElementById('logOut') || !document.getElementById('console') || !document.getElementById('logIn'))
             return;
         clearInterval(this.timer);
         if (this.userService.isLoggedIn({}) == true) {
@@ -13996,7 +13996,7 @@ class LanguageTranslationModule {
         this.translate = translate;
         // Gets Default language from browser if available, otherwise set English ad default
         this.translate.addLangs(['en', 'ch']);
-        this.translate.use('ch');
+        this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();
         this.translate.use(browserLang.match(/en|ch/) ? browserLang : 'en');
     }
