@@ -1,0 +1,40 @@
+{{ 'login' | translate }}
+{{ 'logout' | translate }}
+{{ 'user name' | translate }}
+{{ 'password' | translate }}
+{{ 'forgot password' | translate }}
+{{ 'reset password' | translate 
+{{ 'previous password' | translate }}
+{{ 'new password' | translate }}
+{{ 'confirm password' | translate }}
+{{ 'Go to home' | translate }}
+
+{{ 'Save' | translate }}
+{{ 'Close' | translate }}
+
+
+{{ 'Please provide your username and password to continue' | translate }}
+{{ 'Welcome' | translate }}
+{{ 'at least 8 length' | translate }}
+{{ 'Please provide a valid field.' | translate }}
+{{ 'password does not math' | translate }}
+
+
+{{ 'User manage' | translate }}
+{{ 'System users' | translate }}
+{{ 'Company users' | translate }}
+{{ 'Individual users' | translate }}
+{{ 'Device manage' | translate }}
+{{ 'Camera register' | translate }}
+{{ 'Camera users' | translate }}
+{{ 'Landing page' | translate }}
+{{ 'Monitor' | translate }}
+{{ 'Routing' | translate }}
+{{ 'Replay' | translate }}
+{{ 'Reports' | translate }}
+{{ 'Service' | translate }}
+{{ 'About' | translate }}
+{{ 'Contact' | translate }}
+{{ 'Console' | translate }}
+
+
