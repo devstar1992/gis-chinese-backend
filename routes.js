@@ -33,10 +33,10 @@ router.post('/admin/editIndividual',[requireAuth,requireSystem],ctrlAdmin.editIn
 router.post('/admin/delIndividual',[requireAuth,requireSystem],ctrlAdmin.delIndividual);
 router.post('/admin/addIndividual',[requireAuth,requireSystem],ctrlAdmin.addIndividual);
 //admin_company
-router.post('/company/getCompanyAll',[requireAuth,requireAdmin],ctrlUser.getCompany);
-router.post('/company/editCompanyAll',[requireAuth,requireAdmin],ctrlUser.editCompany);
-router.post('/company/delCompanyAll',[requireAuth,requireAdmin],ctrlUser.delCompany);
-router.post('/company/addCompanyAll',[requireAuth,requireAdmin],ctrlUser.addCompany);
+router.post('/company/getCompany',[requireAuth,requireAdmin],ctrlUser.getCompany);
+router.post('/company/editCompany',[requireAuth,requireAdmin],ctrlUser.editCompany);
+router.post('/company/delCompany',[requireAuth,requireAdmin],ctrlUser.delCompany);
+router.post('/company/addCompany',[requireAuth,requireAdmin],ctrlUser.addCompany);
 
 router.post('/company/getIndividual',[requireAuth,requireAdmin],ctrlUser.getIndividual);
 router.post('/company/editIndividual',[requireAuth,requireAdmin],ctrlUser.editIndividual);

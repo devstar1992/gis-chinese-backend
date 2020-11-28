@@ -81,10 +81,8 @@ let editPassword = async (req, res) => {
 //for CompanyAdmin
 let getCompany = async (req, res) => {
   try {
-    const { user } = req.body;
-    const companyuser = await query.get('company_user', '*', `Where id=${user.id}`);
-    if (companyuser.length == 0) res.json({ message: 'your data not exist', result: result });
-    const result = await query.get('company_user', '*', `Where NOT username="${companyuser[0].username}" AND company="${companyuser[0].company}"`);
+    const user = req.body;
+    const result = await query.get('company_user', '*', `Where NOT id=${user.id} AND company="${user.company}"`);
     res.json({ message: 'success', result: result });
   }
   catch (error) {
@@ -95,31 +93,22 @@ let getCompany = async (req, res) => {
 };
 let editCompany = async (req, res) => {
   try {
-    const { user, data } = req.body;
+    const data = req.body;
     const user_system = await query.get('system_user', '*', `Where username='${data.username}'`);
     const user_company = await query.get('company_user', '*', `Where username='${data.username}' AND NOT id=${data.id}`);
     const user_individual = await query.get('individual_user', '*', `Where username='${data.username}'`);
     if (user_system.length > 0 || user_company.length > 0 || user_individual.length > 0) {
       ctrlFile.deleteItem(data.avatar);
-      return res.status(403).json({
+      return res.status(401).json({
         message: 'username doublicated!'
       });
     }
-    //for camera
-    // const search1 = await query.get('company_user', 'username', `Where id=${data.id}`);
-    // const camerausername = search1[0]['username'];
-    // const camera_edit = await query.update('camera_user', {username:data.username}, `Where username='${camerausername}'`);
-    //for password
-    // const password =  await query.get('company_user', 'password', `Where id=${data.id}`);
-    // if(password[0].password!=data.password){
-    //   data.password = await hashPassword(data.password);
-    // }  data.created_at = new Date().toISOString();
     data.available_to = convertYYMMDD(data.available_to);
     data.available_from = convertYYMMDD(data.available_from);
-    const result = await query.update('company_user', data, `Where id=${data.id} AND company="${user.company}"`);
+    const result = await query.update('company_user', data, `Where id=${data.id}`);
     if (result.affectedRows > 0) {
       res.json({ message: 'success', result: result });
-    } else { res.status(401).json({ message: 'no record', result: result }); }
+    } else { res.status(401).json({ message: 'Failure', result: result }); }
   }
   catch (error) {
     return res.status(400).json({
@@ -129,19 +118,13 @@ let editCompany = async (req, res) => {
 };
 let delCompany = async (req, res) => {
   try {
-    const { user, data } = req.body;
-    const result = await query.del('company_user', `Where id=${data.id} AND company="${user.company}"`);
-    // const camera_id = await query.get('camera_user', 'camera_id', `Where username='${data.username}'`);
-    // if(camera_id.length>0){
-    //   const camera_edit = await query.update('camera', {assign_status:'off',run_status:'off'}, `Where camera_id='${camera_id[0]['camera_id']}'`);
-    //   const camera_user_delete = await query.del('camera_user', `Where username='${data.username}'`);
-    // }
-
+    const data = req.body;
+    const result = await query.del('company_user', `Where id=${data.id}`);
     if (result.affectedRows > 0) {
       res.json({ message: 'success', result: result });
     } else {
       ctrlFile.deleteItem(data.avatar);
-      res.status(401).json({ message: 'no record', result: result });
+      res.status(401).json({ message: "Failure", result: result });
     }
   }
   catch (error) {
@@ -152,13 +135,13 @@ let delCompany = async (req, res) => {
 };
 let addCompany = async (req, res) => {
   try {
-    const { user, data } = req.body;
+    const data = req.body;
     const user_system = await query.get('system_user', '*', `Where username='${data.username}'`);
     const user_company = await query.get('company_user', '*', `Where username='${data.username}'`);
     const user_individual = await query.get('individual_user', '*', `Where username='${data.username}'`);
     if (user_system.length > 0 || user_company.length > 0 || user_individual.length > 0) {
       ctrlFile.deleteItem(data.avatar);
-      return res.status(403).json({
+      return res.status(401).json({
         message: 'username doublicated!'
       });
     }
@@ -169,7 +152,7 @@ let addCompany = async (req, res) => {
     const result = await query.create('company_user', data);
     if (result.affectedRows > 0) {
       res.json({ message: 'success', result: result });
-    } else { res.status(401).json({ message: 'no record', result: result }); }
+    } else { res.status(401).json({ message: 'Failure', result: result }); }
   }
   catch (error) {
     return res.status(400).json({
