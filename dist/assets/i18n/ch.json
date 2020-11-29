@@ -1,7 +1,14 @@
-{
+{ 
     "login" : "登录",
 	"logout" : "退出",
-	"register": "注册",
+	"admin" : "管理员",
+	"agent" : "代理人",
+	"user" : "用户",
+	"ForgotPassword" : "忘记密码?",
+	"I have not account." : "立即注册",
+    "Enter your mail to recover your password": "输入您的邮件以找回密码",
+
+	"register": "立即注册",
 	"account" : "帐户",
 	"user name" : "用户名",
 	"real name" : "真正的名字",

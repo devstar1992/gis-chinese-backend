@@ -1,6 +1,12 @@
 {{ 'login' | translate }}
+{{ 'admin' | translate }}
+{{ 'agent' | translate }}
+{{ 'user' | translate }}
 {{ 'logout' | translate }}
 {{ 'register' | translate }}
+{{ 'ForgotPassword' | translate }}
+{{ 'I have not account.' | translate }}
+{{ 'Enter your mail to recover your password' | translate }}
 
 {{ 'account' | translate }}
 {{ 'user name' | translate }}
@@ -40,7 +46,7 @@
 
 
 {{ 'forgot password' | translate }}
-{{ 'reset password' | translate 
+{{ 'reset password' | translate }}
 {{ 'previous password' | translate }}
 {{ 'new password' | translate }}
 {{ 'confirm password' | translate }}

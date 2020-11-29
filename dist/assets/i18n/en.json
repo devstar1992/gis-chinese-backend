@@ -1,6 +1,12 @@
-{
-    "login" : "Log in",
+{ 
+	"login" : "Log in",
+	"admin" : "admin",
+	"agent" : "agent",
+	"user" : "user",
 	"logout" : "Log out",
+	"ForgotPassword" : "forgot password?",
+	"I have not account." : "I have not account.",
+    "Enter your mail to recover your password": "Enter your mail to recover your password",
 	"register": "register",
 	"account" : "account",
 	"user name" : "username",
