@@ -661,7 +661,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.formGroup = this._formBuilder.group({
             username: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            role: ['user', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            role: ['agent', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
           });
           this.formGroupP = this._formBuilder.group({
             name: [''],
@@ -683,8 +683,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function passwordReset() {
           var _this2 = this;
 
-          console.log('dd');
-          console.log(this.formGroupP.value);
           this.userService.postRequest("api/sendGmail", this.formGroupP.value, false).subscribe(function (res) {
             _this2.Toaster('success', '', 'Your message have sent successfully. Please wait the result.', 2000);
           }, function (err) {
@@ -694,25 +692,70 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "login",
         value: function login() {
+          // alert('My skype address is devstar1992@outlook.com.Please do not say about skype word')
+          var loginData = this.formGroup.value;
+          var role = this.formGroup.value.role;
+          if (role == "admin") this.loginAdmin(loginData);else if (role == "agent") this.loginAgent(loginData);else if (role == "user") this.loginUser(loginData);
+        }
+      }, {
+        key: "loginAdmin",
+        value: function loginAdmin(data) {
           var _this3 = this;
 
-          console.log(this.formGroup.value); // alert('My skype address is devstar1992@outlook.com.Please do not say about skype word')
-
-          if (!this.formGroup.invalid) {
-            this.userService.postRequest("api/login", this.formGroup.value, false).subscribe(function (res) {
-              _this3.userService.setToken({
-                token: res['token'],
-                userInfo: res['userInfo'],
-                expiresAt: res['expiresAt']
-              });
-
-              _this3.Toaster('success', '', 'Welcome');
-
-              _this3.userService.gotoFirstPage();
-            }, function (err) {
-              _this3.handleError(err);
+          this.userService.postRequest('api/loginAdmin', data, false).subscribe(function (res) {
+            _this3.userService.setToken({
+              token: res['token'],
+              userInfo: res['userInfo'],
+              role: data.role,
+              expiresAt: res['expiresAt']
             });
-          }
+
+            _this3.Toaster('success', '', 'Welcome');
+
+            _this3.userService.gotoFirstPage();
+          }, function (err) {
+            _this3.handleError(err);
+          });
+        }
+      }, {
+        key: "loginAgent",
+        value: function loginAgent(data) {
+          var _this4 = this;
+
+          this.userService.postRequest('api/loginAgent', data, false).subscribe(function (res) {
+            _this4.userService.setToken({
+              token: res['token'],
+              userInfo: res['userInfo'],
+              role: data.role,
+              expiresAt: res['expiresAt']
+            });
+
+            _this4.Toaster('success', '', 'Welcome');
+
+            _this4.userService.gotoFirstPage();
+          }, function (err) {
+            _this4.handleError(err);
+          });
+        }
+      }, {
+        key: "loginUser",
+        value: function loginUser(data) {
+          var _this5 = this;
+
+          this.userService.postRequest('api/loginUser', data, false).subscribe(function (res) {
+            _this5.userService.setToken({
+              token: res['token'],
+              userInfo: res['userInfo'],
+              role: data.role,
+              expiresAt: res['expiresAt']
+            });
+
+            _this5.Toaster('success', '', 'Welcome');
+
+            _this5.userService.gotoFirstPage();
+          }, function (err) {
+            _this5.handleError(err);
+          });
         } //toastr functions
 
       }, {
@@ -2276,11 +2319,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(DefaultSorter, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this4 = this;
+          var _this6 = this;
 
           this.svTable.onSortChange.subscribe(function (event) {
-            _this4.isSortedByMeAsc = event.sortBy == _this4.sortBy && event.sortOrder == "asc";
-            _this4.isSortedByMeDesc = event.sortBy == _this4.sortBy && event.sortOrder == "desc";
+            _this6.isSortedByMeAsc = event.sortBy == _this6.sortBy && event.sortOrder == "asc";
+            _this6.isSortedByMeDesc = event.sortBy == _this6.sortBy && event.sortOrder == "desc";
           });
         }
       }, {
@@ -2403,7 +2446,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var Paginator = /*#__PURE__*/function () {
       function Paginator(injectSVTable) {
-        var _this5 = this;
+        var _this7 = this;
 
         _classCallCheck(this, Paginator);
 
@@ -2411,10 +2454,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.dataLength = 0;
 
         this.onPageChangeSubscriber = function (event) {
-          _this5.activePage = event.activePage;
-          _this5.rowsOnPage = event.rowsOnPage;
-          _this5.dataLength = event.dataLength;
-          _this5.lastPage = Math.ceil(_this5.dataLength / _this5.rowsOnPage);
+          _this7.activePage = event.activePage;
+          _this7.rowsOnPage = event.rowsOnPage;
+          _this7.dataLength = event.dataLength;
+          _this7.lastPage = Math.ceil(_this7.dataLength / _this7.rowsOnPage);
         };
       }
 
@@ -2990,12 +3033,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ToasterContainerComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this6 = this;
+          var _this8 = this;
 
           this.toaster.toast$.subscribe(function (toast) {
-            _this6.toasts = [toast].concat(_toConsumableArray(_this6.toasts));
+            _this8.toasts = [toast].concat(_toConsumableArray(_this8.toasts));
             setTimeout(function () {
-              return _this6.toasts.pop();
+              return _this8.toasts.pop();
             }, toast.delay || 1000);
           });
         }

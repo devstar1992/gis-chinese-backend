@@ -335,7 +335,7 @@ class LoginComponent {
         this.formGroup = this._formBuilder.group({
             username: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            role: ['user', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            role: ['agent', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
         });
         this.formGroupP = this._formBuilder.group({
             name: [''],
@@ -351,8 +351,6 @@ class LoginComponent {
         this.translate.use(language);
     }
     passwordReset() {
-        console.log('dd');
-        console.log(this.formGroupP.value);
         this.userService.postRequest("api/sendGmail", this.formGroupP.value, false).subscribe(res => {
             this.Toaster('success', '', 'Your message have sent successfully. Please wait the result.', 2000);
         }, err => {
@@ -360,21 +358,57 @@ class LoginComponent {
         });
     }
     login() {
-        console.log(this.formGroup.value);
         // alert('My skype address is devstar1992@outlook.com.Please do not say about skype word')
-        if (!this.formGroup.invalid) {
-            this.userService.postRequest("api/login", this.formGroup.value, false).subscribe(res => {
-                this.userService.setToken({
-                    token: res['token'],
-                    userInfo: res['userInfo'],
-                    expiresAt: res['expiresAt']
-                });
-                this.Toaster('success', '', 'Welcome');
-                this.userService.gotoFirstPage();
-            }, err => {
-                this.handleError(err);
+        const loginData = this.formGroup.value;
+        const role = this.formGroup.value.role;
+        if (role == "admin")
+            this.loginAdmin(loginData);
+        else if (role == "agent")
+            this.loginAgent(loginData);
+        else if (role == "user")
+            this.loginUser(loginData);
+    }
+    loginAdmin(data) {
+        this.userService.postRequest('api/loginAdmin', data, false).subscribe(res => {
+            this.userService.setToken({
+                token: res['token'],
+                userInfo: res['userInfo'],
+                role: data.role,
+                expiresAt: res['expiresAt']
             });
-        }
+            this.Toaster('success', '', 'Welcome');
+            this.userService.gotoFirstPage();
+        }, err => {
+            this.handleError(err);
+        });
+    }
+    loginAgent(data) {
+        this.userService.postRequest('api/loginAgent', data, false).subscribe(res => {
+            this.userService.setToken({
+                token: res['token'],
+                userInfo: res['userInfo'],
+                role: data.role,
+                expiresAt: res['expiresAt']
+            });
+            this.Toaster('success', '', 'Welcome');
+            this.userService.gotoFirstPage();
+        }, err => {
+            this.handleError(err);
+        });
+    }
+    loginUser(data) {
+        this.userService.postRequest('api/loginUser', data, false).subscribe(res => {
+            this.userService.setToken({
+                token: res['token'],
+                userInfo: res['userInfo'],
+                role: data.role,
+                expiresAt: res['expiresAt']
+            });
+            this.Toaster('success', '', 'Welcome');
+            this.userService.gotoFirstPage();
+        }, err => {
+            this.handleError(err);
+        });
     }
     //toastr functions
     handleError(err) {

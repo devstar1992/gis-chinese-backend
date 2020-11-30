@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 
 const requireAdmin = (req, res, next) => {
-  if (req.user.role==='admin'){
+  if (req.role==='admin'){
     next();
     
   } else{
