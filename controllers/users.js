@@ -89,7 +89,7 @@ let loginUser = async (req, res) => {
     //check request
     if(!username||!password) return res.status(401).json({message: 'Request is wrong.'})
     //check if username exist
-    const r_u_e = await query.get('users', '*', `Where phone_number='${username}'`);
+    const r_u_e = await query.get('vehicles', '*', `Where phone='${username}'`);
     if(r_u_e.length == 0) return res.status(401).json({message: 'Phone number is incorrect.'})
     //check if password is correct
     const user = r_u_e[0];
@@ -97,7 +97,7 @@ let loginUser = async (req, res) => {
     const passwordValid = await verifyLaravelPassword(password, u_password);
     if (passwordValid) {
       const ObjForToken={
-        name:user.phone_number
+        name:user.phone
       };
       const token = createToken(ObjForToken);
       const decodedToken = jwtDecode(token);
@@ -125,7 +125,7 @@ let resetPassword = async (req, res) => {
     };
     if(role=='admin')  db={name:'tb_gpu_user',field:'phone_number'}
     else if(role=='agent')  db={name:'agents',field:'contact_number'}
-    else if(role=='user')  db={name:'users',field:'phone_number'}
+    else if(role=='user')  db={name:'vehicles',field:'phone'}
     //check if phone exist
     const r_u_e = await query.get(`${db.name}`, '*', `Where ${db.field}='${phone}'`);
     if(r_u_e.length == 0) return res.status(401).json({message: 'Phone number is incorrect.'})  
@@ -149,7 +149,7 @@ let editPassword = async (req, res) => {
     };
     if(role=='admin')  db={name:'tb_gpu_user',field:'phone_number'}
     else if(role=='agent')  db={name:'agents',field:'contact_number'}
-    else if(role=='user')  db={name:'users',field:'phone_number'}
+    else if(role=='user')  db={name:'vehicles',field:'phone'}
     //check if phone exist
     const r_u_e = await query.get(`${db.name}`, '*', `Where ${db.field}='${phone}'`);
     if(r_u_e.length == 0) return res.status(401).json({message: 'Phone number has a problem.'})  

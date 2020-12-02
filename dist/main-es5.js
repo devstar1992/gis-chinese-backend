@@ -2,13 +2,11 @@ function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableTo
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -205,13 +203,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _shared_Module_preloader_preloader_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./shared/Module/preloader/preloader.component */
-    "./src/app/shared/Module/preloader/preloader.component.ts");
-    /* harmony import */
-
-
-    var _shared_Module_toaster_toaster_container_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _shared_Module_toaster_toaster_container_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./shared/Module/toaster/toaster-container.component */
     "./src/app/shared/Module/toaster/toaster-container.component.ts");
 
@@ -267,18 +259,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         provide: _angular_common__WEBPACK_IMPORTED_MODULE_2__["LocationStrategy"],
         useClass: _angular_common__WEBPACK_IMPORTED_MODULE_2__["PathLocationStrategy"]
       }])],
-      decls: 3,
+      decls: 2,
       vars: 0,
       template: function AppComponent_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-preloader");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "router-outlet");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "router-outlet");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "app-toaster-container");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "app-toaster-container");
         }
       },
-      directives: [_shared_Module_preloader_preloader_component__WEBPACK_IMPORTED_MODULE_4__["PreloaderComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterOutlet"], _shared_Module_toaster_toaster_container_component__WEBPACK_IMPORTED_MODULE_5__["ToasterContainerComponent"]],
+      directives: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterOutlet"], _shared_Module_toaster_toaster_container_component__WEBPACK_IMPORTED_MODULE_4__["ToasterContainerComponent"]],
       styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"]
     });
     /*@__PURE__*/
@@ -339,33 +329,57 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _shared_Module_shared_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./shared/Module/shared.module */
-    "./src/app/shared/Module/shared.module.ts");
+    var _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./shared/Module/language-translation/language-translation.module */
+    "./src/app/shared/Module/language-translation/language-translation.module.ts");
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./shared/Module/toaster/toast.module */
+    "./src/app/shared/Module/toaster/toast.module.ts");
+    /* harmony import */
+
+
+    var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./app-routing.module */
     "./src/app/app-routing.module.ts");
     /* harmony import */
 
 
-    var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./components/pages/error/error.component */
     "./src/app/components/pages/error/error.component.ts");
     /* harmony import */
 
 
-    var _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./components/pages/login/login.component */
     "./src/app/components/pages/login/login.component.ts");
+    /* harmony import */
+
+
+    var _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ./shared/Module/preloader/preloader.componentRect */
+    "./src/app/shared/Module/preloader/preloader.componentRect.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
@@ -373,20 +387,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
       type: AppModule,
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     });
     AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
       factory: function AppModule_Factory(t) {
         return new (t || AppModule)();
       },
       providers: [],
-      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _shared_Module_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"]]]
+      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_3__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"]]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](AppModule, {
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_5__["ErrorComponent"], _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"]],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _shared_Module_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"]]
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"], _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_8__["ErrorComponent"], _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"], _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_10__["PreloaderComponentRect"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_3__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"]]
       });
     })();
     /*@__PURE__*/
@@ -396,10 +410,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_5__["ErrorComponent"], _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"]],
-          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _shared_Module_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"]],
+          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"], _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_8__["ErrorComponent"], _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"], _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_10__["PreloaderComponentRect"]],
+          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_3__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"]],
           providers: [],
-          bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+          bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         }]
       }], null, null);
     })();
@@ -698,7 +712,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "login",
         value: function login() {
-          // alert('My skype address is devstar1992@outlook.com.Please do not say about skype word')
           var loginData = this.formGroup.value;
           var role = this.formGroup.value.role;
           if (role == "admin") this.loginAdmin(loginData);else if (role == "agent") this.loginAgent(loginData);else if (role == "user") this.loginUser(loginData);
@@ -1254,1292 +1267,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
-  "./src/app/shared/Module/Datatable/BootstrapPaginator.ts":
-  /*!***************************************************************!*\
-    !*** ./src/app/shared/Module/Datatable/BootstrapPaginator.ts ***!
-    \***************************************************************/
-
-  /*! exports provided: BootstrapPaginator */
-
-  /***/
-  function srcAppSharedModuleDatatableBootstrapPaginatorTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "BootstrapPaginator", function () {
-      return BootstrapPaginator;
-    });
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! lodash */
-    "./node_modules/lodash/lodash.js");
-    /* harmony import */
-
-
-    var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-    /* harmony import */
-
-
-    var _Paginator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./Paginator */
-    "./src/app/shared/Module/Datatable/Paginator.ts");
-    /* harmony import */
-
-
-    var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @angular/common */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-
-    function BootstrapPaginator_ul_4_li_4_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r12 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_li_4_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r12);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.activePage - 4);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage - 4);
-      }
-    }
-
-    function BootstrapPaginator_ul_4_li_5_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r14 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_li_5_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r14);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.activePage - 3);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage - 3);
-      }
-    }
-
-    function BootstrapPaginator_ul_4_li_6_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_li_6_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r16);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.activePage - 2);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage - 2);
-      }
-    }
-
-    function BootstrapPaginator_ul_4_li_7_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r18 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_li_7_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r18);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.activePage - 1);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage - 1);
-      }
-    }
-
-    function BootstrapPaginator_ul_4_li_11_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r20 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_li_11_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r20);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.activePage + 1);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage + 1);
-      }
-    }
-
-    function BootstrapPaginator_ul_4_li_12_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r22 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_li_12_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r22);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.activePage + 2);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage + 2);
-      }
-    }
-
-    function BootstrapPaginator_ul_4_li_13_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r24 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_li_13_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r24);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.activePage + 3);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage + 3);
-      }
-    }
-
-    function BootstrapPaginator_ul_4_li_14_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r26 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_li_14_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.activePage + 4);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage + 4);
-      }
-    }
-
-    function BootstrapPaginator_ul_4_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r28 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "ul", 7);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_Template_li_click_1_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r28);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(1);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "\xAB");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, BootstrapPaginator_ul_4_li_4_Template, 3, 1, "li", 10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, BootstrapPaginator_ul_4_li_5_Template, 3, 1, "li", 10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, BootstrapPaginator_ul_4_li_6_Template, 3, 1, "li", 10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, BootstrapPaginator_ul_4_li_7_Template, 3, 1, "li", 10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "li", 11);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, BootstrapPaginator_ul_4_li_11_Template, 3, 1, "li", 10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, BootstrapPaginator_ul_4_li_12_Template, 3, 1, "li", 10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](13, BootstrapPaginator_ul_4_li_13_Template, 3, 1, "li", 10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, BootstrapPaginator_ul_4_li_14_Template, 3, 1, "li", 10);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_4_Template_li_click_15_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r28);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setPage(_r0.lastPage);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "\xBB");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("disabled", _r0.activePage <= 1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.activePage > 4 && _r0.activePage + 1 > _r0.lastPage);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.activePage > 3 && _r0.activePage + 2 > _r0.lastPage);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.activePage > 2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.activePage > 1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_r0.activePage);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.activePage + 1 <= _r0.lastPage);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.activePage + 2 <= _r0.lastPage);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.activePage + 3 <= _r0.lastPage && _r0.activePage < 3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.activePage + 4 <= _r0.lastPage && _r0.activePage < 2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("disabled", _r0.activePage >= _r0.lastPage);
-      }
-    }
-
-    function BootstrapPaginator_ul_6_li_1_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r33 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "li", 8);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function BootstrapPaginator_ul_6_li_1_Template_li_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r33);
-
-          var rows_r31 = ctx.$implicit;
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          return _r0.setRowsOnPage(rows_r31);
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        var rows_r31 = ctx.$implicit;
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("active", _r0.rowsOnPage === rows_r31);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](rows_r31);
-      }
-    }
-
-    function BootstrapPaginator_ul_6_Template(rf, ctx) {
-      if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "ul", 12);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, BootstrapPaginator_ul_6_li_1_Template, 3, 3, "li", 13);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-      }
-
-      if (rf & 2) {
-        var ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r2.rowsOnPageSet);
-      }
-    }
-
-    var BootstrapPaginator = /*#__PURE__*/function () {
-      function BootstrapPaginator() {
-        _classCallCheck(this, BootstrapPaginator);
-
-        this.rowsOnPageSet = [];
-        this.minRowsOnPage = 0;
-      }
-
-      _createClass(BootstrapPaginator, [{
-        key: "ngOnChanges",
-        value: function ngOnChanges(changes) {
-          if (changes.rowsOnPageSet) {
-            this.minRowsOnPage = lodash__WEBPACK_IMPORTED_MODULE_1__["min"](this.rowsOnPageSet);
-          }
-        }
-      }]);
-
-      return BootstrapPaginator;
-    }();
-
-    BootstrapPaginator.ɵfac = function BootstrapPaginator_Factory(t) {
-      return new (t || BootstrapPaginator)();
-    };
-
-    BootstrapPaginator.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
-      type: BootstrapPaginator,
-      selectors: [["sv-bootstrap-paginator"]],
-      inputs: {
-        rowsOnPageSet: "rowsOnPageSet",
-        svTable: "svTable"
-      },
-      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]],
-      decls: 7,
-      vars: 3,
-      consts: [[3, "svTable"], ["p", ""], [1, "row"], [1, "col-md-10"], ["class", "pagination", 4, "ngIf"], [1, "col-md-2", "pull-right", "float-sm-right"], ["class", "pagination pull-right float-sm-right", 4, "ngIf"], [1, "pagination"], [1, "page-item", 3, "click"], [1, "page-link", 2, "cursor", "pointer"], ["class", "page-item", 3, "click", 4, "ngIf"], [1, "page-item", "active"], [1, "pagination", "pull-right", "float-sm-right"], ["class", "page-item", 3, "active", "click", 4, "ngFor", "ngForOf"]],
-      template: function BootstrapPaginator_Template(rf, ctx) {
-        if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "sv-paginator", 0, 1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 3);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, BootstrapPaginator_ul_4_Template, 18, 13, "ul", 4);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 5);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, BootstrapPaginator_ul_6_Template, 2, 1, "ul", 6);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        }
-
-        if (rf & 2) {
-          var _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("svTable", ctx.svTable);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.dataLength > _r0.rowsOnPage);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", _r0.dataLength > ctx.minRowsOnPage);
-        }
-      },
-      directives: [_Paginator__WEBPACK_IMPORTED_MODULE_2__["Paginator"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgIf"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgForOf"]],
-      encapsulation: 2
-    });
-    /*@__PURE__*/
-
-    (function () {
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](BootstrapPaginator, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
-        args: [{
-          selector: 'sv-bootstrap-paginator',
-          template: "\n    <sv-paginator #p [svTable]=\"svTable\">\n        <div class=\"row\">\n\n            <div class=\"col-md-10\">\n                <ul class=\"pagination\" *ngIf=\"p.dataLength > p.rowsOnPage\">\n                    <li class=\"page-item\" [class.disabled]=\"p.activePage <= 1\" (click)=\"p.setPage(1)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">&laquo;</a>\n                    </li>\n                    <li class=\"page-item\" *ngIf=\"p.activePage > 4 && p.activePage + 1 > p.lastPage\" (click)=\"p.setPage(p.activePage - 4)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage-4}}</a>\n                    </li>\n                    <li class=\"page-item\" *ngIf=\"p.activePage > 3 && p.activePage + 2 > p.lastPage\" (click)=\"p.setPage(p.activePage - 3)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage-3}}</a>\n                    </li>\n                    <li class=\"page-item\" *ngIf=\"p.activePage > 2\" (click)=\"p.setPage(p.activePage - 2)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage-2}}</a>\n                    </li>\n                    <li class=\"page-item\" *ngIf=\"p.activePage > 1\" (click)=\"p.setPage(p.activePage - 1)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage-1}}</a>\n                    </li>\n                    <li class=\"page-item active\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage}}</a>\n                    </li>\n                    <li class=\"page-item\" *ngIf=\"p.activePage + 1 <= p.lastPage\" (click)=\"p.setPage(p.activePage + 1)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage+1}}</a>\n                    </li>\n                    <li class=\"page-item\" *ngIf=\"p.activePage + 2 <= p.lastPage\" (click)=\"p.setPage(p.activePage + 2)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage+2}}</a>\n                    </li>\n                    <li class=\"page-item\" *ngIf=\"p.activePage + 3 <= p.lastPage && p.activePage < 3\" (click)=\"p.setPage(p.activePage + 3)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage+3}}</a>\n                    </li>\n                    <li class=\"page-item\" *ngIf=\"p.activePage + 4 <= p.lastPage && p.activePage < 2\" (click)=\"p.setPage(p.activePage + 4)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{p.activePage+4}}</a>\n                    </li>\n                    <li class=\"page-item\" [class.disabled]=\"p.activePage >= p.lastPage\" (click)=\"p.setPage(p.lastPage)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">&raquo;</a>\n                    </li>\n                </ul>\n            </div>\n\n            <div class=\"col-md-2 pull-right float-sm-right\">\n                <ul class=\"pagination pull-right float-sm-right\" *ngIf=\"p.dataLength > minRowsOnPage\">\n                    <li class=\"page-item\" *ngFor=\"let rows of rowsOnPageSet\" [class.active]=\"p.rowsOnPage===rows\" (click)=\"p.setRowsOnPage(rows)\">\n                        <a class=\"page-link\" style=\"cursor: pointer\">{{rows}}</a>\n                    </li>\n                </ul>\n            </div>\n\n        </div>\n    </sv-paginator>\n    "
-        }]
-      }], null, {
-        rowsOnPageSet: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["rowsOnPageSet"]
-        }],
-        svTable: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["svTable"]
-        }]
-      });
-    })();
-    /***/
-
-  },
-
-  /***/
-  "./src/app/shared/Module/Datatable/DataTable.ts":
-  /*!******************************************************!*\
-    !*** ./src/app/shared/Module/Datatable/DataTable.ts ***!
-    \******************************************************/
-
-  /*! exports provided: DataTable */
-
-  /***/
-  function srcAppSharedModuleDatatableDataTableTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "DataTable", function () {
-      return DataTable;
-    });
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! lodash */
-    "./node_modules/lodash/lodash.js");
-    /* harmony import */
-
-
-    var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-    /* harmony import */
-
-
-    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! rxjs */
-    "./node_modules/rxjs/_esm2015/index.js");
-
-    var DataTable = /*#__PURE__*/function () {
-      function DataTable(differs) {
-        _classCallCheck(this, DataTable);
-
-        this.differs = differs;
-        this.inputData = [];
-        this.sortBy = "";
-        this.sortOrder = "asc";
-        this.sortByChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        this.sortOrderChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        this.rowsOnPage = 1000;
-        this.activePage = 1;
-        this.mustRecalculateData = false;
-        this.onSortChange = new rxjs__WEBPACK_IMPORTED_MODULE_2__["ReplaySubject"](1);
-        this.onPageChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        this.diff = differs.find([]).create(null);
-      }
-
-      _createClass(DataTable, [{
-        key: "getSort",
-        value: function getSort() {
-          return {
-            sortBy: this.sortBy,
-            sortOrder: this.sortOrder
-          };
-        }
-      }, {
-        key: "setSort",
-        value: function setSort(sortBy, sortOrder) {
-          if (this.sortBy !== sortBy || this.sortOrder !== sortOrder) {
-            this.sortBy = sortBy;
-            this.sortOrder = lodash__WEBPACK_IMPORTED_MODULE_1__["includes"](["asc", "desc"], sortOrder) ? sortOrder : "asc";
-            this.mustRecalculateData = true;
-            this.onSortChange.next({
-              sortBy: sortBy,
-              sortOrder: sortOrder
-            });
-            this.sortByChange.emit(this.sortBy);
-            this.sortOrderChange.emit(this.sortOrder);
-          }
-        }
-      }, {
-        key: "getPage",
-        value: function getPage() {
-          return {
-            activePage: this.activePage,
-            rowsOnPage: this.rowsOnPage,
-            dataLength: this.inputData.length
-          };
-        }
-      }, {
-        key: "setPage",
-        value: function setPage(activePage, rowsOnPage) {
-          if (this.rowsOnPage !== rowsOnPage || this.activePage !== activePage) {
-            this.activePage = this.activePage !== activePage ? activePage : this.calculateNewActivePage(this.rowsOnPage, rowsOnPage);
-            this.rowsOnPage = rowsOnPage;
-            this.mustRecalculateData = true;
-            this.onPageChange.emit({
-              activePage: this.activePage,
-              rowsOnPage: this.rowsOnPage,
-              dataLength: this.inputData ? this.inputData.length : 0
-            });
-          }
-        }
-      }, {
-        key: "calculateNewActivePage",
-        value: function calculateNewActivePage(previousRowsOnPage, currentRowsOnPage) {
-          var firstRowOnPage = (this.activePage - 1) * previousRowsOnPage + 1;
-          var newActivePage = Math.ceil(firstRowOnPage / currentRowsOnPage);
-          return newActivePage;
-        }
-      }, {
-        key: "recalculatePage",
-        value: function recalculatePage() {
-          var lastPage = Math.ceil(this.inputData.length / this.rowsOnPage);
-          this.activePage = lastPage < this.activePage ? lastPage : this.activePage;
-          this.activePage = this.activePage || 1;
-          this.onPageChange.emit({
-            activePage: this.activePage,
-            rowsOnPage: this.rowsOnPage,
-            dataLength: this.inputData.length
-          });
-        }
-      }, {
-        key: "ngOnChanges",
-        value: function ngOnChanges(changes) {
-          if (changes["rowsOnPage"]) {
-            this.rowsOnPage = changes["rowsOnPage"].previousValue;
-            this.setPage(this.activePage, changes["rowsOnPage"].currentValue);
-            this.mustRecalculateData = true;
-          }
-
-          if (changes["sortBy"] || changes["sortOrder"]) {
-            if (!lodash__WEBPACK_IMPORTED_MODULE_1__["includes"](["asc", "desc"], this.sortOrder)) {
-              console.warn("angular2-datatable: value for input svSortOrder must be one of ['asc', 'desc'], but is:", this.sortOrder);
-              this.sortOrder = "asc";
-            }
-
-            if (this.sortBy) {
-              this.onSortChange.next({
-                sortBy: this.sortBy,
-                sortOrder: this.sortOrder
-              });
-            }
-
-            this.mustRecalculateData = true;
-          }
-
-          if (changes["inputData"]) {
-            this.inputData = changes["inputData"].currentValue || [];
-            this.recalculatePage();
-            this.mustRecalculateData = true;
-          }
-        }
-      }, {
-        key: "ngDoCheck",
-        value: function ngDoCheck() {
-          var changes = this.diff.diff(this.inputData);
-
-          if (changes) {
-            this.recalculatePage();
-            this.mustRecalculateData = true;
-          }
-
-          if (this.mustRecalculateData) {
-            this.fillData();
-            this.mustRecalculateData = false;
-          }
-        }
-      }, {
-        key: "fillData",
-        value: function fillData() {
-          this.activePage = this.activePage;
-          this.rowsOnPage = this.rowsOnPage;
-          var offset = (this.activePage - 1) * this.rowsOnPage;
-          var data = this.inputData;
-          var sortBy = this.sortBy;
-
-          if (typeof sortBy === 'string' || sortBy instanceof String) {
-            data = lodash__WEBPACK_IMPORTED_MODULE_1__["orderBy"](data, this.caseInsensitiveIteratee(sortBy), [this.sortOrder]);
-          } else {
-            data = lodash__WEBPACK_IMPORTED_MODULE_1__["orderBy"](data, sortBy, [this.sortOrder]);
-          }
-
-          data = lodash__WEBPACK_IMPORTED_MODULE_1__["slice"](data, offset, offset + this.rowsOnPage);
-          this.data = data;
-        }
-      }, {
-        key: "caseInsensitiveIteratee",
-        value: function caseInsensitiveIteratee(sortBy) {
-          return function (row) {
-            var value = row;
-
-            var _iterator = _createForOfIteratorHelper(sortBy.split('.')),
-                _step;
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var sortByProperty = _step.value;
-
-                if (value) {
-                  value = value[sortByProperty];
-                }
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-
-            if (value && typeof value === 'string' || value instanceof String) {
-              return value.toLowerCase();
-            }
-
-            return value;
-          };
-        }
-      }]);
-
-      return DataTable;
-    }();
-
-    DataTable.ɵfac = function DataTable_Factory(t) {
-      return new (t || DataTable)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"]));
-    };
-
-    DataTable.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
-      type: DataTable,
-      selectors: [["table", "svData", ""]],
-      inputs: {
-        inputData: ["svData", "inputData"],
-        sortBy: ["svSortBy", "sortBy"],
-        sortOrder: ["svSortOrder", "sortOrder"],
-        rowsOnPage: ["svRowsOnPage", "rowsOnPage"],
-        activePage: ["svActivePage", "activePage"]
-      },
-      outputs: {
-        sortByChange: "svSortByChange",
-        sortOrderChange: "svSortOrderChange"
-      },
-      exportAs: ["svDataTable"],
-      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]]
-    });
-    /*@__PURE__*/
-
-    (function () {
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DataTable, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
-        args: [{
-          selector: 'table[svData]',
-          exportAs: 'svDataTable'
-        }]
-      }], function () {
-        return [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["IterableDiffers"]
-        }];
-      }, {
-        inputData: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["svData"]
-        }],
-        sortBy: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["svSortBy"]
-        }],
-        sortOrder: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["svSortOrder"]
-        }],
-        sortByChange: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"],
-          args: ["svSortByChange"]
-        }],
-        sortOrderChange: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"],
-          args: ["svSortOrderChange"]
-        }],
-        rowsOnPage: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["svRowsOnPage"]
-        }],
-        activePage: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["svActivePage"]
-        }]
-      });
-    })();
-    /***/
-
-  },
-
-  /***/
-  "./src/app/shared/Module/Datatable/DataTableModule.ts":
-  /*!************************************************************!*\
-    !*** ./src/app/shared/Module/Datatable/DataTableModule.ts ***!
-    \************************************************************/
-
-  /*! exports provided: DataTableModule */
-
-  /***/
-  function srcAppSharedModuleDatatableDataTableModuleTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "DataTableModule", function () {
-      return DataTableModule;
-    });
-    /* harmony import */
-
-
-    var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! @angular/common */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _DataTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! ./DataTable */
-    "./src/app/shared/Module/Datatable/DataTable.ts");
-    /* harmony import */
-
-
-    var _DefaultSorter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! ./DefaultSorter */
-    "./src/app/shared/Module/Datatable/DefaultSorter.ts");
-    /* harmony import */
-
-
-    var _Paginator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./Paginator */
-    "./src/app/shared/Module/Datatable/Paginator.ts");
-    /* harmony import */
-
-
-    var _BootstrapPaginator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./BootstrapPaginator */
-    "./src/app/shared/Module/Datatable/BootstrapPaginator.ts");
-
-    var DataTableModule = function DataTableModule() {
-      _classCallCheck(this, DataTableModule);
-    };
-
-    DataTableModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
-      type: DataTableModule
-    });
-    DataTableModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({
-      factory: function DataTableModule_Factory(t) {
-        return new (t || DataTableModule)();
-      },
-      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"]]]
-    });
-
-    (function () {
-      (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](DataTableModule, {
-        declarations: [_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_5__["BootstrapPaginator"], _DataTable__WEBPACK_IMPORTED_MODULE_2__["DataTable"], _DefaultSorter__WEBPACK_IMPORTED_MODULE_3__["DefaultSorter"], _Paginator__WEBPACK_IMPORTED_MODULE_4__["Paginator"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"]],
-        exports: [_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_5__["BootstrapPaginator"], _DataTable__WEBPACK_IMPORTED_MODULE_2__["DataTable"], _DefaultSorter__WEBPACK_IMPORTED_MODULE_3__["DefaultSorter"], _Paginator__WEBPACK_IMPORTED_MODULE_4__["Paginator"]]
-      });
-    })();
-    /*@__PURE__*/
-
-
-    (function () {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](DataTableModule, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
-        args: [{
-          declarations: [_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_5__["BootstrapPaginator"], _DataTable__WEBPACK_IMPORTED_MODULE_2__["DataTable"], _DefaultSorter__WEBPACK_IMPORTED_MODULE_3__["DefaultSorter"], _Paginator__WEBPACK_IMPORTED_MODULE_4__["Paginator"]],
-          exports: [_BootstrapPaginator__WEBPACK_IMPORTED_MODULE_5__["BootstrapPaginator"], _DataTable__WEBPACK_IMPORTED_MODULE_2__["DataTable"], _DefaultSorter__WEBPACK_IMPORTED_MODULE_3__["DefaultSorter"], _Paginator__WEBPACK_IMPORTED_MODULE_4__["Paginator"]],
-          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"]]
-        }]
-      }], null, null);
-    })();
-    /***/
-
-  },
-
-  /***/
-  "./src/app/shared/Module/Datatable/DefaultSorter.ts":
-  /*!**********************************************************!*\
-    !*** ./src/app/shared/Module/Datatable/DefaultSorter.ts ***!
-    \**********************************************************/
-
-  /*! exports provided: DefaultSorter */
-
-  /***/
-  function srcAppSharedModuleDatatableDefaultSorterTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "DefaultSorter", function () {
-      return DefaultSorter;
-    });
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _DataTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./DataTable */
-    "./src/app/shared/Module/Datatable/DataTable.ts");
-    /* harmony import */
-
-
-    var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/common */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-
-    function DefaultSorter_span_2_Template(rf, ctx) {
-      if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "span", 3);
-      }
-    }
-
-    function DefaultSorter_span_3_Template(rf, ctx) {
-      if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "span", 4);
-      }
-    }
-
-    var _c0 = ["*"];
-
-    var DefaultSorter = /*#__PURE__*/function () {
-      function DefaultSorter(svTable) {
-        _classCallCheck(this, DefaultSorter);
-
-        this.svTable = svTable;
-        this.isSortedByMeAsc = false;
-        this.isSortedByMeDesc = false;
-      }
-
-      _createClass(DefaultSorter, [{
-        key: "ngOnInit",
-        value: function ngOnInit() {
-          var _this6 = this;
-
-          this.svTable.onSortChange.subscribe(function (event) {
-            _this6.isSortedByMeAsc = event.sortBy == _this6.sortBy && event.sortOrder == "asc";
-            _this6.isSortedByMeDesc = event.sortBy == _this6.sortBy && event.sortOrder == "desc";
-          });
-        }
-      }, {
-        key: "sort",
-        value: function sort() {
-          if (this.isSortedByMeAsc) {
-            this.svTable.setSort(this.sortBy, "desc");
-          } else {
-            this.svTable.setSort(this.sortBy, "asc");
-          }
-        }
-      }]);
-
-      return DefaultSorter;
-    }();
-
-    DefaultSorter.ɵfac = function DefaultSorter_Factory(t) {
-      return new (t || DefaultSorter)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_DataTable__WEBPACK_IMPORTED_MODULE_1__["DataTable"]));
-    };
-
-    DefaultSorter.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
-      type: DefaultSorter,
-      selectors: [["sv-default-sorter"]],
-      inputs: {
-        sortBy: ["by", "sortBy"]
-      },
-      ngContentSelectors: _c0,
-      decls: 4,
-      vars: 2,
-      consts: [[1, "text-nowrap", 2, "cursor", "pointer", 3, "click"], ["class", "glyphicon glyphicon-triangle-top fa fa-sort-up", "aria-hidden", "true", 4, "ngIf"], ["class", "glyphicon glyphicon-triangle-bottom fa fa-sort-down", "aria-hidden", "true", 4, "ngIf"], ["aria-hidden", "true", 1, "glyphicon", "glyphicon-triangle-top", "fa", "fa-sort-up"], ["aria-hidden", "true", 1, "glyphicon", "glyphicon-triangle-bottom", "fa", "fa-sort-down"]],
-      template: function DefaultSorter_Template(rf, ctx) {
-        if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojectionDef"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 0);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DefaultSorter_Template_a_click_0_listener() {
-            return ctx.sort();
-          });
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojection"](1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, DefaultSorter_span_2_Template, 1, 0, "span", 1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, DefaultSorter_span_3_Template, 1, 0, "span", 2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        }
-
-        if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.isSortedByMeAsc);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.isSortedByMeDesc);
-        }
-      },
-      directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"]],
-      encapsulation: 2
-    });
-    /*@__PURE__*/
-
-    (function () {
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](DefaultSorter, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
-        args: [{
-          selector: 'sv-default-sorter',
-          template: "\n        <a style=\"cursor: pointer\" (click)=\"sort()\" class=\"text-nowrap\">\n            <ng-content></ng-content>\n            <span *ngIf=\"isSortedByMeAsc\" class=\"glyphicon glyphicon-triangle-top fa fa-sort-up\" aria-hidden=\"true\"></span>\n            <span *ngIf=\"isSortedByMeDesc\" class=\"glyphicon glyphicon-triangle-bottom fa fa-sort-down\" aria-hidden=\"true\"></span>\n        </a>\n    "
-        }]
-      }], function () {
-        return [{
-          type: _DataTable__WEBPACK_IMPORTED_MODULE_1__["DataTable"]
-        }];
-      }, {
-        sortBy: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["by"]
-        }]
-      });
-    })();
-    /***/
-
-  },
-
-  /***/
-  "./src/app/shared/Module/Datatable/Paginator.ts":
-  /*!******************************************************!*\
-    !*** ./src/app/shared/Module/Datatable/Paginator.ts ***!
-    \******************************************************/
-
-  /*! exports provided: Paginator */
-
-  /***/
-  function srcAppSharedModuleDatatablePaginatorTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "Paginator", function () {
-      return Paginator;
-    });
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _DataTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./DataTable */
-    "./src/app/shared/Module/Datatable/DataTable.ts");
-
-    var _c0 = ["*"];
-
-    var Paginator = /*#__PURE__*/function () {
-      function Paginator(injectSVTable) {
-        var _this7 = this;
-
-        _classCallCheck(this, Paginator);
-
-        this.injectSVTable = injectSVTable;
-        this.dataLength = 0;
-
-        this.onPageChangeSubscriber = function (event) {
-          _this7.activePage = event.activePage;
-          _this7.rowsOnPage = event.rowsOnPage;
-          _this7.dataLength = event.dataLength;
-          _this7.lastPage = Math.ceil(_this7.dataLength / _this7.rowsOnPage);
-        };
-      }
-
-      _createClass(Paginator, [{
-        key: "ngOnChanges",
-        value: function ngOnChanges(changes) {
-          this.svTable = this.inputSVTable || this.injectSVTable;
-          this.onPageChangeSubscriber(this.svTable.getPage());
-          this.svTable.onPageChange.subscribe(this.onPageChangeSubscriber);
-        }
-      }, {
-        key: "setPage",
-        value: function setPage(pageNumber) {
-          this.svTable.setPage(pageNumber, this.rowsOnPage);
-        }
-      }, {
-        key: "setRowsOnPage",
-        value: function setRowsOnPage(rowsOnPage) {
-          this.svTable.setPage(this.activePage, rowsOnPage);
-        }
-      }]);
-
-      return Paginator;
-    }();
-
-    Paginator.ɵfac = function Paginator_Factory(t) {
-      return new (t || Paginator)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_DataTable__WEBPACK_IMPORTED_MODULE_1__["DataTable"], 8));
-    };
-
-    Paginator.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
-      type: Paginator,
-      selectors: [["sv-paginator"]],
-      inputs: {
-        inputSVTable: ["svTable", "inputSVTable"]
-      },
-      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]],
-      ngContentSelectors: _c0,
-      decls: 1,
-      vars: 0,
-      template: function Paginator_Template(rf, ctx) {
-        if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojectionDef"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵprojection"](0);
-        }
-      },
-      encapsulation: 2
-    });
-    /*@__PURE__*/
-
-    (function () {
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Paginator, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
-        args: [{
-          selector: "sv-paginator",
-          template: "<ng-content></ng-content>"
-        }]
-      }], function () {
-        return [{
-          type: _DataTable__WEBPACK_IMPORTED_MODULE_1__["DataTable"],
-          decorators: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Optional"]
-          }]
-        }];
-      }, {
-        inputSVTable: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"],
-          args: ["svTable"]
-        }]
-      });
-    })();
-    /***/
-
-  },
-
-  /***/
   "./src/app/shared/Module/language-translation/language-translation.module.ts":
   /*!***********************************************************************************!*\
     !*** ./src/app/shared/Module/language-translation/language-translation.module.ts ***!
@@ -2662,23 +1389,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
-  "./src/app/shared/Module/preloader/preloader.component.ts":
-  /*!****************************************************************!*\
-    !*** ./src/app/shared/Module/preloader/preloader.component.ts ***!
-    \****************************************************************/
+  "./src/app/shared/Module/preloader/preloader.componentRect.ts":
+  /*!********************************************************************!*\
+    !*** ./src/app/shared/Module/preloader/preloader.componentRect.ts ***!
+    \********************************************************************/
 
-  /*! exports provided: PreloaderComponent */
+  /*! exports provided: PreloaderComponentRect */
 
   /***/
-  function srcAppSharedModulePreloaderPreloaderComponentTs(module, __webpack_exports__, __webpack_require__) {
+  function srcAppSharedModulePreloaderPreloaderComponentRectTs(module, __webpack_exports__, __webpack_require__) {
     "use strict";
 
     __webpack_require__.r(__webpack_exports__);
     /* harmony export (binding) */
 
 
-    __webpack_require__.d(__webpack_exports__, "PreloaderComponent", function () {
-      return PreloaderComponent;
+    __webpack_require__.d(__webpack_exports__, "PreloaderComponentRect", function () {
+      return PreloaderComponentRect;
     });
     /* harmony import */
 
@@ -2687,30 +1414,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 
-    var PreloaderComponent = /*#__PURE__*/function () {
-      function PreloaderComponent() {
-        _classCallCheck(this, PreloaderComponent);
+    var PreloaderComponentRect = /*#__PURE__*/function () {
+      function PreloaderComponentRect() {
+        _classCallCheck(this, PreloaderComponentRect);
       }
 
-      _createClass(PreloaderComponent, [{
+      _createClass(PreloaderComponentRect, [{
         key: "ngOnInit",
         value: function ngOnInit() {}
       }]);
 
-      return PreloaderComponent;
+      return PreloaderComponentRect;
     }();
 
-    PreloaderComponent.ɵfac = function PreloaderComponent_Factory(t) {
-      return new (t || PreloaderComponent)();
+    PreloaderComponentRect.ɵfac = function PreloaderComponentRect_Factory(t) {
+      return new (t || PreloaderComponentRect)();
     };
 
-    PreloaderComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
-      type: PreloaderComponent,
-      selectors: [["app-preloader"]],
-      decls: 14,
+    PreloaderComponentRect.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+      type: PreloaderComponentRect,
+      selectors: [["app-preloader-rect"]],
+      decls: 11,
       vars: 0,
-      consts: [["id", "preloader-wrap"], [1, "spinner", "spinner-8"], [1, "ms-circle1", "ms-child"], [1, "ms-circle2", "ms-child"], [1, "ms-circle3", "ms-child"], [1, "ms-circle4", "ms-child"], [1, "ms-circle5", "ms-child"], [1, "ms-circle6", "ms-child"], [1, "ms-circle7", "ms-child"], [1, "ms-circle8", "ms-child"], [1, "ms-circle9", "ms-child"], [1, "ms-circle10", "ms-child"], [1, "ms-circle11", "ms-child"], [1, "ms-circle12", "ms-child"]],
-      template: function PreloaderComponent_Template(rf, ctx) {
+      consts: [["id", "preloader-wrap"], [1, "spinner", "spinner-9"], [1, "ms-cube", "ms-cube1"], [1, "ms-cube", "ms-cube2"], [1, "ms-cube", "ms-cube3"], [1, "ms-cube", "ms-cube4"], [1, "ms-cube", "ms-cube5"], [1, "ms-cube", "ms-cube6"], [1, "ms-cube", "ms-cube7"], [1, "ms-cube", "ms-cube8"], [1, "ms-cube", "ms-cube9"]],
+      template: function PreloaderComponentRect_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
 
@@ -2734,144 +1461,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "div", 10);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](11, "div", 11);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "div", 12);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "div", 13);
-
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
       },
-      styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC9Nb2R1bGUvcHJlbG9hZGVyL3ByZWxvYWRlci5jb21wb25lbnQuY3NzIn0= */"]
+      styles: [""]
     });
     /*@__PURE__*/
 
     (function () {
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PreloaderComponent, [{
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PreloaderComponentRect, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
-          selector: 'app-preloader',
-          templateUrl: './preloader.component.html',
-          styleUrls: ['./preloader.component.css']
+          selector: 'app-preloader-rect',
+          template: "\n  <div id=\"preloader-wrap\">\n     <div class=\"spinner spinner-9\">\n        <div class=\"ms-cube ms-cube1\"></div>\n        <div class=\"ms-cube ms-cube2\"></div>\n        <div class=\"ms-cube ms-cube3\"></div>\n        <div class=\"ms-cube ms-cube4\"></div>\n        <div class=\"ms-cube ms-cube5\"></div>\n        <div class=\"ms-cube ms-cube6\"></div>\n        <div class=\"ms-cube ms-cube7\"></div>\n        <div class=\"ms-cube ms-cube8\"></div>\n        <div class=\"ms-cube ms-cube9\"></div>\n      </div>\n  </div>\n  ",
+          styles: ['']
         }]
       }], function () {
         return [];
       }, null);
-    })();
-    /***/
-
-  },
-
-  /***/
-  "./src/app/shared/Module/shared.module.ts":
-  /*!************************************************!*\
-    !*** ./src/app/shared/Module/shared.module.ts ***!
-    \************************************************/
-
-  /*! exports provided: SharedModule */
-
-  /***/
-  function srcAppSharedModuleSharedModuleTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "SharedModule", function () {
-      return SharedModule;
-    });
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/forms */
-    "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
-    /* harmony import */
-
-
-    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/router */
-    "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-    /* harmony import */
-
-
-    var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @angular/common */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-    /* harmony import */
-
-
-    var _Datatable_DataTableModule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! ./Datatable/DataTableModule */
-    "./src/app/shared/Module/Datatable/DataTableModule.ts");
-    /* harmony import */
-
-
-    var _language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ./language-translation/language-translation.module */
-    "./src/app/shared/Module/language-translation/language-translation.module.ts");
-    /* harmony import */
-
-
-    var _preloader_preloader_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! ./preloader/preloader.component */
-    "./src/app/shared/Module/preloader/preloader.component.ts");
-    /* harmony import */
-
-
-    var _toaster_toast_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-    /*! ./toaster/toast.module */
-    "./src/app/shared/Module/toaster/toast.module.ts");
-    /* harmony import */
-
-
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-    /*! @angular/common/http */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-
-    var SharedModule = function SharedModule() {
-      _classCallCheck(this, SharedModule);
-    };
-
-    SharedModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
-      type: SharedModule
-    });
-    SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
-      factory: function SharedModule_Factory(t) {
-        return new (t || SharedModule)();
-      },
-      imports: [[_toaster_toast_module__WEBPACK_IMPORTED_MODULE_7__["ToastModule"], _Datatable_DataTableModule__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"], _language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_5__["LanguageTranslationModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]], _toaster_toast_module__WEBPACK_IMPORTED_MODULE_7__["ToastModule"], _Datatable_DataTableModule__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"], _language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_5__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"]]
-    });
-
-    (function () {
-      (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](SharedModule, {
-        declarations: [_preloader_preloader_component__WEBPACK_IMPORTED_MODULE_6__["PreloaderComponent"]],
-        imports: [_toaster_toast_module__WEBPACK_IMPORTED_MODULE_7__["ToastModule"], _Datatable_DataTableModule__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"], _language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_5__["LanguageTranslationModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]],
-        exports: [_preloader_preloader_component__WEBPACK_IMPORTED_MODULE_6__["PreloaderComponent"], _toaster_toast_module__WEBPACK_IMPORTED_MODULE_7__["ToastModule"], _Datatable_DataTableModule__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"], _language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_5__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"]]
-      });
-    })();
-    /*@__PURE__*/
-
-
-    (function () {
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SharedModule, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
-        args: [{
-          imports: [_toaster_toast_module__WEBPACK_IMPORTED_MODULE_7__["ToastModule"], _Datatable_DataTableModule__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"], _language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_5__["LanguageTranslationModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]],
-          declarations: [_preloader_preloader_component__WEBPACK_IMPORTED_MODULE_6__["PreloaderComponent"]],
-          exports: [_preloader_preloader_component__WEBPACK_IMPORTED_MODULE_6__["PreloaderComponent"], _toaster_toast_module__WEBPACK_IMPORTED_MODULE_7__["ToastModule"], _Datatable_DataTableModule__WEBPACK_IMPORTED_MODULE_4__["DataTableModule"], _language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_5__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"]]
-        }]
-      }], null, null);
     })();
     /***/
 
@@ -3039,12 +1648,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ToasterContainerComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this8 = this;
+          var _this6 = this;
 
           this.toaster.toast$.subscribe(function (toast) {
-            _this8.toasts = [toast].concat(_toConsumableArray(_this8.toasts));
+            _this6.toasts = [toast].concat(_toConsumableArray(_this6.toasts));
             setTimeout(function () {
-              return _this8.toasts.pop();
+              return _this6.toasts.pop();
             }, toast.delay || 1000);
           });
         }
