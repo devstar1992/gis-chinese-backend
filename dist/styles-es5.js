@@ -526,12 +526,13 @@
 
     exports = ___CSS_LOADER_API_IMPORT___(true); // Module
 
-    exports.push([module.i, "", "", {
+    exports.push([module.i, "  .message{\r\n      display:none\r\n  }\r\n  .igx-list__item-content{\r\n    font-size: 15px;\r\n    height: 30px;\r\n    padding: 5px 5px;\r\n    cursor: pointer;\r\n  }\r\n  .BMap_noprint.anchorTR {\r\n    inset: auto 10px 10px auto !important;\r\n  }\r\n  /*sidebar*/\r\n  .sidebar-open{\r\n  width: calc(100% - 250px);\r\n  transition: width 0.3s;\r\n}\r\n  .sidebar-close{\r\n  width: 100%;\r\n  transition: width 0.3s;\r\n}\r\n  .lestSideDiv{\r\n  width: 250px;\r\n  float: left;\r\n  overflow: auto;\r\n  padding: 0px;\r\n  border-left: 2px solid rgb(221, 221, 221);\r\n  /* height: 690px; */\r\n}", "", {
       "version": 3,
-      "sources": [],
+      "sources": ["styles.css"],
       "names": [],
-      "mappings": "",
-      "file": "styles.css"
+      "mappings": "EAAE;MACI;EACJ;EACA;IACE,eAAe;IACf,YAAY;IACZ,gBAAgB;IAChB,eAAe;EACjB;EACA;IACE,qCAAqC;EACvC;EACA,UAAU;EACZ;EACE,yBAAyB;EACzB,sBAAsB;AACxB;EACA;EACE,WAAW;EACX,sBAAsB;AACxB;EACA;EACE,YAAY;EACZ,WAAW;EACX,cAAc;EACd,YAAY;EACZ,yCAAyC;EACzC,mBAAmB;AACrB",
+      "file": "styles.css",
+      "sourcesContent": ["  .message{\r\n      display:none\r\n  }\r\n  .igx-list__item-content{\r\n    font-size: 15px;\r\n    height: 30px;\r\n    padding: 5px 5px;\r\n    cursor: pointer;\r\n  }\r\n  .BMap_noprint.anchorTR {\r\n    inset: auto 10px 10px auto !important;\r\n  }\r\n  /*sidebar*/\r\n.sidebar-open{\r\n  width: calc(100% - 250px);\r\n  transition: width 0.3s;\r\n}\r\n.sidebar-close{\r\n  width: 100%;\r\n  transition: width 0.3s;\r\n}\r\n.lestSideDiv{\r\n  width: 250px;\r\n  float: left;\r\n  overflow: auto;\r\n  padding: 0px;\r\n  border-left: 2px solid rgb(221, 221, 221);\r\n  /* height: 690px; */\r\n}"]
     }]); // Exports
 
     module.exports = exports;

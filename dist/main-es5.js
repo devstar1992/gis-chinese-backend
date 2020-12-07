@@ -329,55 +329,61 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/platform-browser/animations */
+    "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/animations.js");
+    /* harmony import */
+
+
+    var _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ./shared/Module/language-translation/language-translation.module */
     "./src/app/shared/Module/language-translation/language-translation.module.ts");
     /* harmony import */
 
 
-    var _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./shared/Module/toaster/toast.module */
     "./src/app/shared/Module/toaster/toast.module.ts");
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./app-routing.module */
     "./src/app/app-routing.module.ts");
     /* harmony import */
 
 
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
     /* harmony import */
 
 
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
     /* harmony import */
 
 
-    var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./components/pages/error/error.component */
     "./src/app/components/pages/error/error.component.ts");
     /* harmony import */
 
 
-    var _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ./components/pages/login/login.component */
     "./src/app/components/pages/login/login.component.ts");
     /* harmony import */
 
 
-    var _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ./shared/Module/preloader/preloader.componentRect */
     "./src/app/shared/Module/preloader/preloader.componentRect.ts");
 
@@ -387,20 +393,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
       type: AppModule,
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
     });
     AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({
       factory: function AppModule_Factory(t) {
         return new (t || AppModule)();
       },
       providers: [],
-      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_3__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"]]]
+      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_3__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_4__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"]]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](AppModule, {
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"], _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_8__["ErrorComponent"], _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"], _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_10__["PreloaderComponentRect"]],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_3__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"]]
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"], _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_9__["ErrorComponent"], _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"], _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_11__["PreloaderComponentRect"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_3__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_4__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"]]
       });
     })();
     /*@__PURE__*/
@@ -410,10 +416,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"], _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_8__["ErrorComponent"], _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"], _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_10__["PreloaderComponentRect"]],
-          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_3__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"]],
+          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"], _components_pages_error_error_component__WEBPACK_IMPORTED_MODULE_9__["ErrorComponent"], _components_pages_login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"], _shared_Module_preloader_preloader_componentRect__WEBPACK_IMPORTED_MODULE_11__["PreloaderComponentRect"]],
+          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _shared_Module_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_3__["LanguageTranslationModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"], _shared_Module_toaster_toast_module__WEBPACK_IMPORTED_MODULE_4__["ToastModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"]],
           providers: [],
-          bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+          bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
         }]
       }], null, null);
     })();
