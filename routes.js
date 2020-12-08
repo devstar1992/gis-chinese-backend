@@ -1,4 +1,13 @@
 const router = require('express').Router();
+const r2 = require("r2");
+const getMap = async url => {
+  try {
+    const response = await r2(url).json;
+    return response
+  } catch (error) {
+    return {status:401,err:error}
+  }
+};
 //middleware
 const requireAdmin = require('./middlewares/requireAdmin');
 const requireAgent = require('./middlewares/requireAgent');
@@ -7,6 +16,7 @@ const requireAuth = require('./middlewares/requireAuth');
 const user = require('./controllers/users');
 const map = require('./controllers/map');
 const mail = require('./controllers/mail');
+const { response } = require('express');
 //userlogin, editPassword, resetPassword
 router.post('/loginAdmin', user.loginAdmin);
 router.post('/loginAgent', user.loginAgent);
@@ -20,6 +30,11 @@ router.post('/getPosition', [requireAuth], map.getPosition);
 //mail
 router.post('/sendGmail',mail.sendGmail);
 module.exports = (app) => {
+  app.use('/baidu-map',async (req,res)=>{
+    const url='http://api.map.baidu.com'+req.url;
+    const result= await getMap(url);
+    res.json(result)
+  })
   app.use('/api', router);
   app.use((req, res, next) => {
     const error = new Error('Not found');
