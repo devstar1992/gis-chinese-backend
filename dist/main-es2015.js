@@ -1138,6 +1138,7 @@ class UserService {
         this.http = http;
         this.router = router;
         this.loginURL = '/login';
+        this.firstPage = 'map/monitor/vehicle';
         this.VDMSURL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].VDMSURL;
         this.noAuthHeader = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'NoAuth': 'True' }) };
     }
@@ -1162,7 +1163,7 @@ class UserService {
         window.location.href = this.VDMSURL;
     }
     gotoFirstPage() {
-        this.router.navigateByUrl('/map/monitor');
+        this.router.navigateByUrl(this.firstPage);
     }
     setToken(token) {
         localStorage.setItem('token', JSON.stringify(token));

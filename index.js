@@ -8,9 +8,5 @@ if (require.main === module) {
   sqlDB.connect((err) => {
     if (err) throw err;
     console.log('Connected!');
-    // const user='dgdg';
-    // dd.update('system_user',"",`Where username='${user}'`).then(res=>{
-    //   console.log(res);
-    // })
   });
 }

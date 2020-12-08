@@ -81,6 +81,7 @@
 {{ 'Camera users' | translate }}
 {{ 'Landing page' | translate }}
 {{ 'Monitor' | translate }}
+{{ 'Vehicle monitor' | translate }}
 {{ 'Routing' | translate }}
 {{ 'Replay' | translate }}
 {{ 'Reports' | translate }}

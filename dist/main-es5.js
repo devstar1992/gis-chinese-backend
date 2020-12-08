@@ -2076,6 +2076,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.http = http;
         this.router = router;
         this.loginURL = '/login';
+        this.firstPage = 'map/monitor/vehicle';
         this.VDMSURL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].VDMSURL;
         this.noAuthHeader = {
           headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
@@ -2112,7 +2113,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "gotoFirstPage",
         value: function gotoFirstPage() {
-          this.router.navigateByUrl('/map/monitor');
+          this.router.navigateByUrl(this.firstPage);
         }
       }, {
         key: "setToken",

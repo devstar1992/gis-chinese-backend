@@ -58,7 +58,7 @@ let loginAdmin = async (req, res) => {
     const u_password = user.password;
     const passwordValid = await verifyLaravelPassword(password, u_password);
     if (passwordValid) {
-      const ObjForToken={
+      const ObjForToken={ 
         name:user.phone_number
       };
       const token = createToken(ObjForToken);
