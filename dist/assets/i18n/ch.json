@@ -82,5 +82,7 @@
 	"About":"关于",
 	"Contact":"联系",
 	"Console":"控制台",
-	"Search location, check bus, find route":"搜地点、查公交、找路线"
+	"Search location,find route":"搜地点找路线",
+	"City":"市",
+	"Location":"位置"
 }

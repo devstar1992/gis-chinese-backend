@@ -83,5 +83,7 @@
 	"About":"About",
 	"Contact":"Contact",
 	"Console":"Console",
-	"Search location, check bus, find route":"Search location, check bus, find route"
+	"Search location,find route":"Search location,find route",
+	"City":"City",
+	"Location":"Loc"
 }
