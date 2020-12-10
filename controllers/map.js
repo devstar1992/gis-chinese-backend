@@ -8,30 +8,25 @@ let getVehicleInfo = async (req, res) => {
       name:'',
       field:''
     };
-    if(role=='admin')  db={name:'tb_gpu_user',field:'phone_number'}
+    if(role=='admin')  db={name:'agents',field:'id'}
     else if(role=='agent')  db={name:'agents',field:'contact_number'}
     else if(role=='user')  db={name:'vehicles',field:'phone'}
     else {
       return res.status(401).json({message: 'Request is wrong.'})  
     }
     //check if phone exist
-    const r_u_e = await query.get(`${db.name}`, '*', `Where ${db.field}='${phone}'`);
+    let keyName;
+    if(role=='admin') keyName= req.body.agent;
+    else keyName=phone;
+    const r_u_e = await query.get(`${db.name}`, '*', `Where ${db.field}='${keyName}'`);
     if(r_u_e.length == 0) return res.status(401).json({message: 'Request is wrong.'})  
     //***********get vehicle id
     const user = r_u_e[0];
     let vehicles=[];
     if(role=='user') vehicles =  await query.get("vehicles", '*', `Where phone='${phone}'`)  //when client is user
     else if(role=='agent') vehicles =  await query.get("vehicles", '*', `Where agent_id='${user.id}'`) //when client is agent
-    else if(role=='admin' && user.name==SuperAdmin) vehicles =  await query.get("vehicles", '*') //when client is super admin
-    else if(role=='admin' && user.name!=SuperAdmin) {                                            //when client is admin
-      const agent = await query.get("agents", '*', `Where admin_name='${user.phone_number}'`);  //get agent array of admin
-      if(agent.length==0) return res.status(401).json({message: 'You have no agents yet.'})  //if admin has no agent, error
-      for(let i = 0 ; i < agent.length; i++){
-       const v = await query.get("vehicles", '*', `Where agent_id='${agent[i].id}'`) //get vehicles for each agents id
-       vehicles.concat(v)
-      }
-    }
-   return res.json({result:vehicles}) 
+    else if(role=='admin') vehicles =  await query.get("vehicles", '*',`Where agent_id='${user.id}'`) //when client is super admin
+    return res.json({result:vehicles}) 
   }
   catch (error) {
     return res.status(400).json({

@@ -17,12 +17,13 @@ const user = require('./controllers/users');
 const map = require('./controllers/map');
 const mail = require('./controllers/mail');
 const { response } = require('express');
-//userlogin, editPassword, resetPassword
+//userlogin, editPassword, resetPassword, get agentlist
 router.post('/loginAdmin', user.loginAdmin);
 router.post('/loginAgent', user.loginAgent);
 router.post('/loginUser', user.loginUser);
 router.post('/resetPassword', user.resetPassword);
 router.post('/editPassword', user.editPassword);
+router.post('/getAgentlist', user.getAgentlist);
 //Map
 router.post('/getVehicleInfo', [requireAuth], map.getVehicleInfo);
 router.post('/getVehicleStatus', [requireAuth], map.getVehicleStatus);

@@ -1144,6 +1144,7 @@ class UserService {
     }
     //For login & register
     postRequest(URL, data = {}, header = true) {
+        console.log(data);
         if (header)
             return this.http.post(URL, data, this.getHeader());
         else

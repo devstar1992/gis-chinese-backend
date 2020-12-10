@@ -169,10 +169,27 @@ let editPassword = async (req, res) => {
     });
   }
 }
+let getAgentlist = async (req, res) => {
+  try {
+    //check if phone exist
+    const {user}=req.body;
+    const superAdmin="13478915888";
+    let item;
+    if(user==superAdmin)    item = await query.get('agents', '*')
+    else   item = await query.get('agents', '*', `Where admin_name='${req.body.user}'`);
+    return res.status(200).json({result:item}) ;
+  }
+  catch (error) {
+    return res.status(400).json({
+      message: 'Something went wrong.', err: error
+    });
+  }
+}
 module.exports = {
   loginAgent:loginAgent,
   loginAdmin:loginAdmin,
   loginUser:loginUser,
   resetPassword: resetPassword,
   editPassword: editPassword,
+  getAgentlist: getAgentlist
 }
