@@ -15,6 +15,7 @@ const requireAuth = require('./middlewares/requireAuth');
 //controller
 const user = require('./controllers/users');
 const map = require('./controllers/map');
+const gps = require('./controllers/gps');
 const mail = require('./controllers/mail');
 const { response } = require('express');
 //userlogin, editPassword, resetPassword, get agentlist
@@ -28,6 +29,8 @@ router.post('/getAgentlist', user.getAgentlist);
 router.post('/getVehicleInfo', [requireAuth], map.getVehicleInfo);
 router.post('/getVehicleStatus', [requireAuth], map.getVehicleStatus);
 router.post('/getPosition', [requireAuth], map.getPosition);
+//gps
+router.get('/getGpsInfo/:name', gps.getGpsInfo);
 //mail
 router.post('/sendGmail',mail.sendGmail);
 module.exports = (app) => {
