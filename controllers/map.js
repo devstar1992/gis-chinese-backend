@@ -3,7 +3,7 @@ const query = require('../model/query_gpu');
 const SuperAdmin = 'Admin';
 let getVehicleInfo = async (req, res) => {
   try {
-    const { phone, role } = req.body;
+    const { phone, role, agent} = req.body;
     let db={
       name:'',
       field:''

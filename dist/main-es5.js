@@ -2091,7 +2091,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function postRequest(URL) {
           var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
           var header = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-          console.log(data);
           if (header) return this.http.post(URL, data, this.getHeader());else return this.http.post(URL, data, this.noAuthHeader);
         }
       }, {
