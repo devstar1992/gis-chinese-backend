@@ -4,11 +4,13 @@ const SuperAdmin = 'Admin';
 let getVehicleInfo = async (req, res) => {
   try {
     const { phone, role, agent} = req.body;
+    const superAdmin="13478915888";
     let db={
       name:'',
       field:''
     };
-    if(role=='admin')  db={name:'agents',field:'id'}
+    if(agent=='all') db={name:'agents',field:'admin_name'}
+    else if(role=='admin')  db={name:'agents',field:'id'}
     else if(role=='agent')  db={name:'agents',field:'contact_number'}
     else if(role=='user')  db={name:'vehicles',field:'phone'}
     else {
@@ -16,14 +18,27 @@ let getVehicleInfo = async (req, res) => {
     }
     //check if phone exist
     let keyName;
-    if(role=='admin') keyName= req.body.agent;
+    let r_u_e;
+    if(agent=='all') keyName=phone;
+    else if(role=='admin') keyName= req.body.agent;
     else keyName=phone;
-    const r_u_e = await query.get(`${db.name}`, '*', `Where ${db.field}='${keyName}'`);
+    
+    if(phone==superAdmin&&role=='admin'&&agent=='all'){
+      r_u_e = await query.get(`${db.name}`, '*');
+    }else{
+      r_u_e = await query.get(`${db.name}`, '*', `Where ${db.field}='${keyName}'`);
+    }
     if(r_u_e.length == 0) return res.status(401).json({message: 'Request is wrong.'})  
     //***********get vehicle id
     const user = r_u_e[0];
     let vehicles=[];
-    if(role=='user') vehicles =  await query.get("vehicles", '*', `Where phone='${phone}'`)  //when client is user
+    if(agent=='all') {
+      for(let i =0; i< r_u_e.length; i++){
+        const item = await query.get("vehicles", '*', `Where agent_id='${r_u_e[i].id}'`);
+        vehicles=vehicles.concat(item);
+      }
+    }
+    else if(role=='user') vehicles =  await query.get("vehicles", '*', `Where phone='${phone}'`)  //when client is user
     else if(role=='agent') vehicles =  await query.get("vehicles", '*', `Where agent_id='${user.id}'`) //when client is agent
     else if(role=='admin') vehicles =  await query.get("vehicles", '*',`Where agent_id='${user.id}'`) //when client is super admin
     return res.json({result:vehicles}) 

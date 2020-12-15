@@ -8,7 +8,7 @@ let  getGpsInfo = async (req, res) => {
     const gpsData = await getFile(fileName);
     return res.status(200).json(gpsData);
   }catch(err){
-    return res.status(400).json(err);
+    return res.status(200).json({status:240});
   }
 }
 const getFile = async (fileName) => {
@@ -16,7 +16,7 @@ const getFile = async (fileName) => {
     return new Promise((resolve, reject) => {
       lineReader.eachLine(fileName, (line, last) => {
        item.push(line)
-       if(last === true)  resolve({list:item,last:line});
+       if(last === true)  resolve({status:0,list:item,last:line});
       },(err) => {
         reject(err)
       })
