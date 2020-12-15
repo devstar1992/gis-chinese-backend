@@ -31,6 +31,7 @@ router.post('/getVehicleStatus', [requireAuth], map.getVehicleStatus);
 router.post('/getPosition', [requireAuth], map.getPosition);
 //gps
 router.get('/getGpsInfo/:name', gps.getGpsInfo);
+router.post('/getGpsInfoPost', gps.getGpsInfoWithArray);
 //mail
 router.post('/sendGmail',mail.sendGmail);
 module.exports = (app) => {
