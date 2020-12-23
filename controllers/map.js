@@ -1,10 +1,9 @@
 const { body, validationResult } = require('express-validator');
 const query = require('../model/query_gpu');
-const SuperAdmin = 'Admin';
+const superAdmin="13478915888";
 let getVehicleInfo = async (req, res) => {
   try {
     const { phone, role, agent} = req.body;
-    const superAdmin="13478915888";
     let db={
       name:'',
       field:''
@@ -25,7 +24,11 @@ let getVehicleInfo = async (req, res) => {
     
     if(phone==superAdmin&&role=='admin'&&agent=='all'){
       r_u_e = await query.get(`${db.name}`, '*');
-    }else{
+    }
+    else if(phone!=superAdmin&&role=='admin'&&agent=='all'){
+      r_u_e = await query.get(`${db.name}`, '*',`Where 'admin_name'='${phone}'`);
+    }
+    else{
       r_u_e = await query.get(`${db.name}`, '*', `Where ${db.field}='${keyName}'`);
     }
     if(r_u_e.length == 0) return res.status(401).json({message: 'Request is wrong.'})  
@@ -41,6 +44,11 @@ let getVehicleInfo = async (req, res) => {
     else if(role=='user') vehicles =  await query.get("vehicles", '*', `Where phone='${phone}'`)  //when client is user
     else if(role=='agent') vehicles =  await query.get("vehicles", '*', `Where agent_id='${user.id}'`) //when client is agent
     else if(role=='admin') vehicles =  await query.get("vehicles", '*',`Where agent_id='${user.id}'`) //when client is super admin
+    let camera=[];
+    for(let i=0 ; i < vehicles.length; i++){
+      camera = await query.get("tb_camera", '*', `Where vehicle_number='${vehicles[i].id}'`);
+      vehicles[i].camera = camera;
+    }
     return res.json({result:vehicles}) 
   }
   catch (error) {
