@@ -6580,18 +6580,16 @@ if(t==e.dx){for((r||f>e.dy)&&(f=e.dy);++u<o;)i=n[u],i.x=a,i.y=c,i.dy=f,a+=i.dx=M
     /*  Custom Toggle Actions */
     function customToggleActions(){
       $(".ms-toggler").bind('click', function(){
-
         var target = $(this).data('target');
         var toggleType = $(this).data('toggle');
-
         switch(toggleType) {
 
         //Aside Left
         case 'slideLeft':
-          $(target).toggleClass('ms-aside-open');
-          $(".ms-aside-overlay.ms-overlay-left").toggleClass('d-block');
-          $(".ms-body").toggleClass('ms-aside-left-open');
-          break;
+            $(target).toggleClass('ms-aside-open');
+            $(".ms-aside-overlay.ms-overlay-left").toggleClass('d-block');
+            $(".ms-body").toggleClass('ms-aside-left-open');
+            break;
         // Aside Right
         case 'slideRight':
           $(target).toggleClass('ms-aside-open');

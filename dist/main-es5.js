@@ -2299,7 +2299,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! D:\Development\Angular\GIS\front\src\main.ts */
+    /*! D:\GIS\gis-chinese-frontend\src\main.ts */
     "./src/main.ts");
     /***/
   }
