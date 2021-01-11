@@ -33,7 +33,9 @@ router.post('/getPosition', [requireAuth], map.getPosition);
 router.get('/getGpsInfo/:name', gps.getGpsInfo);
 router.post('/getGpsInfoPost', gps.getGpsInfoWithArray);
 router.post('/getGpsTrackingInfo', gps.getGpsTrackingInfo);
-router.post('/getGpsOverViewInfo', gps.getGpsOverViewInfo);
+//report
+router.post('/getMovingOverViewInfo', gps.getMovingOverViewInfo);
+router.post('/getVideoOverViewInfo', gps.getVideoOverViewInfo);
 //mail
 router.post('/sendGmail',mail.sendGmail);
 module.exports = (app) => {

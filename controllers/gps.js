@@ -65,7 +65,27 @@ const getTrackInfo = async (fileName,date_from,date_to) => {
     })
   })
 }
-let  getGpsOverViewInfo = async (req, res) => {
+//for report page
+let  getMovingOverViewInfo = async (req, res) => {
+  try{
+    const { agent, date_from, date_to, role, phone} = req.body;
+    let vehicles = await func.getVehicleList(role,agent,phone);
+    let result = [];
+    for (let i = 0; i < vehicles.length; i++) {
+      const fileName = path.join(__dirname, '..', `./gps/taxi/${vehicles[i].license_plate_number}`);
+      const gpsData = await getTrackInfo(fileName,date_from,date_to);
+      if(gpsData.status == 0) {
+        const gps = gpsData.data;
+        const item = func.getSummaryOfTrackInfo(vehicles[i],gps);
+        result.push(item);
+      }
+    }
+    return res.status(200).json({res:result});
+  }catch(err){
+    return res.status(404).json('something went wrong');
+  }
+}
+let  getVideoOverViewInfo = async (req, res) => {
   try{
     const { agent, date_from, date_to, role, phone} = req.body;
     let vehicles = await func.getVehicleList(role,agent,phone);
@@ -88,5 +108,6 @@ module.exports = {
   getGpsInfo: getGpsInfo,
   getGpsInfoWithArray:getGpsInfoWithArray,
   getGpsTrackingInfo:getGpsTrackingInfo,
-  getGpsOverViewInfo:getGpsOverViewInfo,
+  getMovingOverViewInfo:getMovingOverViewInfo,
+  getVideoOverViewInfo:getVideoOverViewInfo,
 }
