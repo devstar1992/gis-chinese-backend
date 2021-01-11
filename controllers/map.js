@@ -49,7 +49,8 @@ let getVehicleInfo = async (req, res) => {
       camera = await query.get("tb_camera", '*', `Where vehicle_number='${vehicles[i].id}'`);
       vehicles[i].camera = camera;
     }
-    return res.json({result:vehicles}) 
+    const type = await await query.get("vehicle_types", '*');
+    return res.json({result:vehicles,type:type}) 
   }
   catch (error) {
     return res.status(400).json({
