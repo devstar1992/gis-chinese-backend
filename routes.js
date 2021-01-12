@@ -16,8 +16,8 @@ const requireAuth = require('./middlewares/requireAuth');
 const user = require('./controllers/users');
 const map = require('./controllers/map');
 const gps = require('./controllers/gps');
+const gpsMaker = require('./controllers/gps_maker');
 const mail = require('./controllers/mail');
-const { response } = require('express');
 //userlogin, editPassword, resetPassword, get agentlist
 router.post('/loginAdmin', user.loginAdmin);
 router.post('/loginAgent', user.loginAgent);
@@ -29,8 +29,7 @@ router.post('/getAgentlist', user.getAgentlist);
 router.post('/getVehicleInfo', [requireAuth], map.getVehicleInfo);
 router.post('/getVehicleStatus', [requireAuth], map.getVehicleStatus);
 router.post('/getPosition', [requireAuth], map.getPosition);
-//gps
-router.get('/getGpsInfo/:name', gps.getGpsInfo);
+//Monitor
 router.post('/getGpsInfoPost', gps.getGpsInfoWithArray);
 router.post('/getGpsTrackingInfo', gps.getGpsTrackingInfo);
 //report
@@ -38,6 +37,9 @@ router.post('/getMovingOverViewInfo', gps.getMovingOverViewInfo);
 router.post('/getVideoOverViewInfo', gps.getVideoOverViewInfo);
 //mail
 router.post('/sendGmail',mail.sendGmail);
+//gpsMaker
+router.get('/startGpsMaker/:password',gpsMaker.makeGpsInfo);
+router.get('/stopGpsMaker/:password',gpsMaker.stopGpsInfo);
 module.exports = (app) => {
   app.use('/baidu-map',async (req,res)=>{
     const url='http://api.map.baidu.com'+req.url;

@@ -1,8 +1,8 @@
 const app = require("./app");
 const mysql = require('mysql');
 const config = require("./config");
-const sqlDB = require("./model/db");
-const dd = require("./model/query");
+global.timeIntervalGpsMaker;
+const sqlDB = require("./model/db_gpu");
 if (require.main === module) {
   app.listen(config.port);
   sqlDB.connect((err) => {

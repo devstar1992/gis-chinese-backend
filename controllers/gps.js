@@ -5,16 +5,6 @@ const query = require('../model/query_gpu');
 const lineReader = require('line-reader');
 const func = require("./func");
 const superAdmin="13478915888";
-let  getGpsInfo = async (req, res) => {
-  try{
-    const {name} = req.params;
-    const fileName = path.join(__dirname, '..', `./gps/taxi/${name}`);
-    const gpsData = await getFile(fileName);
-    return res.status(200).json(gpsData);
-  }catch(err){
-    return res.status(200).json({status:240});
-  }
-}
 let getGpsInfoWithArray = async (req, res) => {
   try{
     let item = [];
@@ -32,11 +22,17 @@ let getGpsInfoWithArray = async (req, res) => {
 let  getGpsTrackingInfo = async (req, res) => {
   try{
     const {car_number,date_from,date_to} = req.body;
-    const fileName = path.join(__dirname, '..', `./gps/taxi/${car_number}`);
-    const gpsData = await getTrackInfo(fileName,date_from,date_to);
-    return res.status(200).json(gpsData);
+    const vehicle = await query.get('vehicles','*',`Where license_plate_number = '${car_number}'`);
+    if(vehicle.length>0){
+      const vehicleCompleteItem = await func.getVehicleCompleteItem(vehicle[0]);
+      const {device_imei} = vehicleCompleteItem;
+      const gpsInfo = await func.getGpsInfomationWithTimeQuery(device_imei,date_from,date_to);
+      return res.status(200).json({result:gpsInfo});
+    }else{
+      return res.status(401).json('This vehicle does not exist');
+    }
   }catch(err){
-    return res.status(200).json({status:240});
+    return res.status(401).json('Something went wrong');
   }
 }
 const getFile = async (fileName) => {
@@ -72,11 +68,11 @@ let  getMovingOverViewInfo = async (req, res) => {
     let vehicles = await func.getVehicleList(role,agent,phone);
     let result = [];
     for (let i = 0; i < vehicles.length; i++) {
-      const fileName = path.join(__dirname, '..', `./gps/taxi/${vehicles[i].license_plate_number}`);
-      const gpsData = await getTrackInfo(fileName,date_from,date_to);
-      if(gpsData.status == 0) {
-        const gps = gpsData.data;
-        const item = func.getSummaryOfTrackInfo(vehicles[i],gps);
+      const vehicleCompleteItem = await func.getVehicleCompleteItem(vehicles[i]);
+      const {device_imei} = vehicleCompleteItem;
+      const gpsInfo = await func.getGpsInfomationWithTimeQuery(device_imei,date_from,date_to);
+      if(gpsInfo.length > 0) {
+        const item = func.getSummaryOfTrackInfo(vehicleCompleteItem,gpsInfo);
         result.push(item);
       }
     }
@@ -105,7 +101,6 @@ let  getVideoOverViewInfo = async (req, res) => {
   }
 }
 module.exports = {
-  getGpsInfo: getGpsInfo,
   getGpsInfoWithArray:getGpsInfoWithArray,
   getGpsTrackingInfo:getGpsTrackingInfo,
   getMovingOverViewInfo:getMovingOverViewInfo,
